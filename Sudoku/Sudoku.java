@@ -56,3 +56,4 @@ public class Sudoku implements ActionListener, MouseListener{
 	objectname = new Sudoku(seed);
 	//NEED TO ADD IN USER INPUT FOR SEED
     }
+}
