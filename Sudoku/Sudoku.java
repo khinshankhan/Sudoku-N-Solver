@@ -30,6 +30,24 @@ public class Sudoku implements ActionListener, MouseListener{
     static int seed;
     //controls algorithm of changing the puzzle
     private static Random randgen;
+    //temp holder for swapping
+    String [] temp;
+    
+    //for switching two rows
+    public static void switchRows(String [][] a, int row1, int row2) {
+	String [] temp = a[row1];
+	a[row1] = a[row2]; 
+	a[row2] = temp;
+    }
+
+    //for switching two columns
+    public static void switchColumns(String [][] a, int column1, int column2) {
+	for (int i = 0; i < a.length; i++) {
+	    String temp = a[i][column1];
+	    a[i][column1] = a[i][column2];
+	    a[i][column2] = temp;
+	}
+    }
 
     public static void main (String [] a) {
 	int x;
