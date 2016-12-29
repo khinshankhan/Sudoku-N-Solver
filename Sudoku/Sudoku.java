@@ -56,4 +56,31 @@ public class Sudoku implements ActionListener, MouseListener{
 	objectname = new Sudoku(seed);
 	//NEED TO ADD IN USER INPUT FOR SEED
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+	int xcor = e.getX();
+	int ycor = e.getY();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
+    
