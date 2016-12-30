@@ -51,6 +51,7 @@ public class Sudoku implements ActionListener, MouseListener{
 
     //constructor
     public Sudoku(int seed){
+	randgen = new Random(seed);
 	JFrame jframe = new JFrame();
 	Timer timer = new Timer(20, this);
 	renderer = new Renderer();
