@@ -61,6 +61,7 @@ public class Sudoku implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e) {
 	int xcor = e.getX();
 	int ycor = e.getY();
+	System.out.println(xcor+","+ycor);
     }
 
     @Override
