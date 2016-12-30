@@ -49,6 +49,15 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
     }
 
+    //constructor
+    public Sudoku(int seed){
+	JFrame jframe = new JFrame();
+	renderer = new Renderer();
+	jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	jframe.setSize(650, 470);
+	jframe.setVisible(true);
+    }
+
     //method to use renderer
     public void actionPerformed(ActionEvent e){
 	renderer.repaint();
