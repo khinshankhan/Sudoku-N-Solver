@@ -49,6 +49,11 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
     }
 
+    //method to use renderer
+    public void actionPerformed(ActionEvent e){
+	renderer.repaint();
+    }
+
     public static void main (String [] a) {
 	int x;
 	x = (int) (Math.random() * 1000);
