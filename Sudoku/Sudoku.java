@@ -93,7 +93,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	while (i < 450){
 	    g.fillRect(475, i, 20, 20);
 	    g.setColor(Color.black);
-	    Font font = new Font("Arial", Font.BOLD, 14);
+	    Font font = new Font("Saab", Font.BOLD, 16);
 	    g.setFont(font);
 	    g.drawString(num + "", 481, i+15);
 	    i+=50;
