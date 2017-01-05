@@ -18,8 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.Random;
 
-import java.awt.GraphicsEnvironment;
-
 //class name+ implementations, note i like to use graphic
 public class Sudoku implements ActionListener, MouseListener{
 
@@ -108,13 +106,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	x = (int) (Math.random() * 1000);
 	seed = x;
 	objectname = new Sudoku(seed);
-	    String fonts[] = 
-      GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 
-    for ( int i = 0; i < fonts.length; i++ )
-    {
-      System.out.println(fonts[i]);
-    }
 	//NEED TO ADD IN USER INPUT FOR SEED
     }
 
