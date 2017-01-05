@@ -1,6 +1,7 @@
 //NOTES & MESSAGES
 /*
 NEED TO ADD IN USER INPUT FOR SEED
+***work on puzzle aspect next
  */
 
 //importations
@@ -13,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.Random;
@@ -67,6 +66,39 @@ public class Sudoku implements ActionListener, MouseListener{
     //method to use renderer
     public void actionPerformed(ActionEvent e){
 	renderer.repaint();
+    }
+
+    //method to design the GUI
+    public void repaint(Graphics g) {
+	//THIS IS THE SUDOKU GRID
+	g.setColor(Color.white);
+	g.fillRect(0,  0,  450,  450);
+	int i = 50;
+	g.setColor(Color.black);
+	g.fillRect(450,  0,  70, 450);
+	while (i < 450){
+	    g.fillRect(i, 0, 1, 450);
+	    g.fillRect(0,  i, 450, 1);
+	    if (i == 150 || i == 300) {
+		g.fillRect(i, 0, 3, 450);
+		g.fillRect(0,  i, 450, 3);
+	    }
+	    i += 50;
+	}
+	i = 15;
+	int num =  1;
+	g.setColor(Color.white);
+	while (i < 450){
+	    g.fillRect(475, i, 20, 20);
+	    g.setColor(Color.black);
+	    Font font = new Font("Helvetica", Font.BOLD, 20);
+	    g.setFont(font);
+	    g.drawString(num + "", 481, i+15);
+	    i+=50;
+	    num++;
+	    g.setColor(Color.white);
+	}
+	//END OF JUST SUDOKU GRID
     }
 
     public static void main (String [] a) {
