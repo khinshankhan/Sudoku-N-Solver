@@ -61,7 +61,9 @@ public class Sudoku implements ActionListener, MouseListener{
 
     //constructor
     public Sudoku(int seed){
+	//assign randgen
 	randgen = new Random(seed);
+	
 	JFrame jframe = new JFrame();
 	Timer timer = new Timer(20, this);
 	renderer = new Renderer();
@@ -81,9 +83,15 @@ public class Sudoku implements ActionListener, MouseListener{
 
     //method to design the GUI
     public void repaint(Graphics g) {
+	//Seed display
+	g.setColor(Color.black);
+	Font mundane=new Font ("Arial",Font.BOLD,20);
+	g.setFont(mundane);
+	g.drawString("SEED", 550, 30);
+	g.drawString(""+seed, 557, 50);
 	//THIS IS THE SUDOKU GRID
 	g.setColor(Color.white);
-	g.fillRect(0,  0,  450,  450);
+      	g.fillRect(0,  0,  450,  450);
 	int i = 50;
 	g.setColor(Color.black);
 	g.fillRect(450,  0,  70, 450);
