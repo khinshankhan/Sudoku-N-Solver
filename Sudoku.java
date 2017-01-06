@@ -29,8 +29,19 @@ public class Sudoku implements ActionListener, MouseListener{
     static int seed;
     //controls algorithm of changing the puzzle
     private static Random randgen;
-    //temp holder for swapping
+
     String [] temp;
+    String numVal = "";
+    //Solved puzzzle that will be shuffled (idk why the commit got messed up)
+    String [][] solvedPuzzle = {{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
+				{"8", "9", "7", "3", "6", "1", "5", "4", "2"},
+	                       {"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
+	                       {"4", "6", "1", "7", "3", "9", "2", "8", "5"},
+	                       {"7", "5", "8", "4", "2", "6", "1", "3", "9"}, 
+	                       {"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
+	                       {"2", "3", "6", "8", "7", "4", "9", "5", "1"}, 
+	                       {"1", "7", "5", "6", "9", "3", "4", "2", "8"},
+	                       {"9", "8", "4", "2", "1", "5", "6", "7", "3"}};
     
     //for switching two rows
     public static void switchRows(String [][] a, int row1, int row2) {
