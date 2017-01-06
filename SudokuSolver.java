@@ -2,6 +2,8 @@
 NOTES: 
 1/5: finished algorithm (waiting for randomization bit for better tests, though)
      up next: integrate GUI, add ability to build puzzle!
+1/6: RendererSolver.java created (beginning of GUI)
+     GUI next!!!
  */ 
 
 //import stuff
@@ -16,6 +18,13 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class SudokuSolver{
+
+    //for the renderer (RendererSolver.java)
+    public static SudokuSolver objectname;
+    //paint component
+    public RendererSolver renderer;
+ 
+    //
     private String[][] puzzle = {
 	{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
 	{"8", "9", "7", "3", "6", "1", "5", "4", "2"},
@@ -28,6 +37,7 @@ public class SudokuSolver{
 	{"9", "8", "4", "2", "1", "5", "6", "7", "3"}}; //decided on Strings
 
     
+    //will be updated with the "build-a-puzzle" alg + graphics!!!
     public SudokuSolver(String[][] p){
 	puzzle = p;
     }
