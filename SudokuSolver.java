@@ -4,6 +4,7 @@ NOTES:
      up next: integrate GUI, add ability to build puzzle!
 1/6: RendererSolver.java created (beginning of GUI)
      GUI next!!!
+     Fix bug with last value in grid
  */ 
 
 //import stuff
@@ -16,15 +17,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.*;
+import java.util.Random; //for puzzle generator
 
-public class SudokuSolver{
+public class SudokuSolver{ //will implement ActionListener, MouseListener
 
     //for the renderer (RendererSolver.java)
     public static SudokuSolver objectname;
     //paint component
     public RendererSolver renderer;
  
-    //
+    //decided on Strings for the puzzle
+    //will have to be set to a bunch of empty Strings eventually...
     private String[][] puzzle = {
 	{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
 	{"8", "9", "7", "3", "6", "1", "5", "4", "2"},
@@ -34,12 +37,11 @@ public class SudokuSolver{
 	{"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
 	{"2", "3", "6", "8", "7", "4", "9", "5", "1"}, 
 	{"1", "7", "5", "6", "9", "3", "4", "2", "8"},
-	{"9", "8", "4", "2", "1", "5", "6", "7", "3"}}; //decided on Strings
+	{"9", "8", "4", "2", "1", "5", "6", "7", "3"}};
 
-    
     //will be updated with the "build-a-puzzle" alg + graphics!!!
     public SudokuSolver(String[][] p){
-	puzzle = p;
+	puzzle = p; //for tests
     }
 
     //BOOLEAN BACKTRACKING FUNCTION (ESSENTIAL FOR SOLVING PUZZLES)
@@ -48,8 +50,9 @@ public class SudokuSolver{
     static String[] vals = {"1","2","3","4","5","6","7","8","9"};
 
     public static boolean canBeSolved(String[][] puzzle, int r, int c){
-	//static or no?
+	//static or no? Yah
 	
+	//this is the BUG
 	if(r == 8 && c == 8){ //breaks loop -- base case
 	    return true;
 	}
