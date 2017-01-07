@@ -121,7 +121,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
 	//blanks values
 	//NEED TO IMPLEMENT BEN'S BACKTRACKING TO MAKE SURE UNIQUE SOLUTION
-	for (int i = 0; i < 60; i++){
+	for (int i = 0; i < 1; i++){
 	    rand = randgen.nextInt(9);
 	    rand2 = randgen.nextInt(9);
 	    if (solvedPuzzle[rand][rand2].equals("")) {
@@ -209,15 +209,20 @@ public class Sudoku implements ActionListener, MouseListener{
 	if (win(nums, solvedPuzzle)){
 	    g.fillRect(0,  0,  450,  450);
 	    g.setColor(Color.white);
-	    Font won = new Font("Helvetica", Font.BOLD, 20);
+	    Font won = new Font("Helvetica", Font.BOLD, 70);
 	    g.setFont(won);
-	    g.drawString("You win!", 250, 220);
+	    g.drawString("You win!", 110, 220);
 	}
     }
 
     public static void main (String [] a) {
 	int x;
-	x = (int) (Math.random() * 1000);
+	try {
+	    x = Integer.parseInt(a[0]);
+	    x %= 1000;
+	}catch (Exception e){
+	    x = (int) (Math.random() * 1000);
+	}
 	seed = x;
 	objectname = new Sudoku(seed);
 
