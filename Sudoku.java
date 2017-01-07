@@ -1,9 +1,6 @@
 //NOTES & MESSAGES
 /*
 NEED TO ADD IN USER INPUT FOR SEED
-***work on puzzle aspect next
-add in user inputs
-add in win message
 implement ben's backtracking soon
  */
 
