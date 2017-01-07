@@ -31,7 +31,7 @@ public class Sudoku implements ActionListener, MouseListener{
     //seed to help recreate if the user chooses, or else will be random
     static int seed;
     //controls algorithm of changing the puzzle
-    private static Random randgen;
+    Random randgen;
     //Variables to utilize randgen when shuffling
     int rand,rand2;
     //Strings arrays to hold values
@@ -50,7 +50,16 @@ public class Sudoku implements ActionListener, MouseListener{
 	                        {"2", "3", "6", "8", "7", "4", "9", "5", "1"}, 
 	                        {"1", "7", "5", "6", "9", "3", "4", "2", "8"},
 	                        {"9", "8", "4", "2", "1", "5", "6", "7", "3"}};
-    
+    //win method, boolean to check if two 2d arrays are equal
+    public static boolean win(String [][] a, String[][] b) {
+	boolean winner = true;
+	for (int i = 0; i < a.length; i++) {
+	    for (int j = 0; j < a[0].length; j++)
+		if (!(a[i][j].equals(b[i][j])))
+		    winner = false;
+	}
+	return winner;
+    }
     //for switching two rows
     public static void switchRows(String [][] a, int row1, int row2) {
 	String [] temp = a[row1];
