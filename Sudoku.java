@@ -2,6 +2,7 @@
 /*
 NEED TO ADD IN USER INPUT FOR SEED
 ***work on puzzle aspect next
+implement ben's backtracking soon
  */
 
 //importations
@@ -17,10 +18,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.Random;
+import java.util.Arrays; 
 
 //class name+ implementations, note i like to use graphic
 public class Sudoku implements ActionListener, MouseListener{
-
     //helps with initialization+ renderer
     public static Sudoku objectname;
     //paint component
@@ -29,19 +30,24 @@ public class Sudoku implements ActionListener, MouseListener{
     static int seed;
     //controls algorithm of changing the puzzle
     private static Random randgen;
-
+    //Variables to utilize randgen when shuffling
+    int rand,rand2;
+    //Strings arrays to hold values
+    String [][] nums = new String[9][9];
+    String [][] orig = new String[9][9];
     String [] temp;
     String numVal = "";
+    
     //Solved puzzzle that will be shuffled (idk why the commit got messed up)
     String [][] solvedPuzzle = {{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
 				{"8", "9", "7", "3", "6", "1", "5", "4", "2"},
-	                       {"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
-	                       {"4", "6", "1", "7", "3", "9", "2", "8", "5"},
-	                       {"7", "5", "8", "4", "2", "6", "1", "3", "9"}, 
-	                       {"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
-	                       {"2", "3", "6", "8", "7", "4", "9", "5", "1"}, 
-	                       {"1", "7", "5", "6", "9", "3", "4", "2", "8"},
-	                       {"9", "8", "4", "2", "1", "5", "6", "7", "3"}};
+	                        {"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
+	                        {"4", "6", "1", "7", "3", "9", "2", "8", "5"},
+	                        {"7", "5", "8", "4", "2", "6", "1", "3", "9"}, 
+	                        {"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
+	                        {"2", "3", "6", "8", "7", "4", "9", "5", "1"}, 
+	                        {"1", "7", "5", "6", "9", "3", "4", "2", "8"},
+	                        {"9", "8", "4", "2", "1", "5", "6", "7", "3"}};
     
     //for switching two rows
     public static void switchRows(String [][] a, int row1, int row2) {
@@ -63,7 +69,42 @@ public class Sudoku implements ActionListener, MouseListener{
     public Sudoku(int seed){
 	//assign randgen
 	randgen = new Random(seed);
-	
+	//meticulously  shuffling of solved puzzle using the seed to maintain Sudoku viability
+	for (int i = 0; i < 5; i++){
+	    rand = randgen.nextInt(9);
+	    if (rand % 3 == 0){
+		switchRows(solvedPuzzle, rand, 0);
+	        switchRows(solvedPuzzle, rand+1, 1);
+	        switchRows(solvedPuzzle, rand+2, 2);
+	    }
+	    if (rand % 3 == 1){
+	        switchRows(solvedPuzzle, rand, 1);
+	        switchRows(solvedPuzzle, rand-1, 0);
+	        switchRows(solvedPuzzle, rand+1, 2);
+	    }
+	    if (rand % 3 == 2){
+	        switchRows(solvedPuzzle, rand, 2);
+	        switchRows(solvedPuzzle, rand-1, 1);
+	        switchRows(solvedPuzzle, rand-2, 0);
+	    }
+	    rand = randgen.nextInt(9);
+	    if (rand % 3 == 0){
+	        switchColumns(solvedPuzzle, rand, 0);
+	        switchColumns(solvedPuzzle, rand+1, 1);
+	        switchColumns(solvedPuzzle, rand+2, 2);
+	    }
+	    if (rand % 3 == 1){
+	        switchColumns(solvedPuzzle, rand, 1);
+	        switchColumns(solvedPuzzle, rand-1, 0);
+	        switchColumns(solvedPuzzle, rand+1, 2);
+	    }
+	    if (rand % 3 == 2){
+		switchColumns(solvedPuzzle, rand, 2);
+	        switchColumns(solvedPuzzle, rand-1, 1);
+	        switchColumns(solvedPuzzle, rand-2, 0);
+	    }
+	}
+        System.out.println(Arrays.deepToString(solvedPuzzle).replace("[", "").replace("], ","\n"));
 	JFrame jframe = new JFrame();
 	Timer timer = new Timer(20, this);
 	renderer = new Renderer();
