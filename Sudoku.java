@@ -117,18 +117,14 @@ public class Sudoku implements ActionListener, MouseListener{
 	        switchColumns(solvedPuzzle, rand-2, 0);
 	    }
 	}
-	//Second arrays filled, to be cross-checked when checking if won
-	for(int i = 0; i < 9; i++){
+	//answer key to compare against
+	for (int i = 0; i < 9; i++){
 	    for (int j = 0; j < 9; j++)
 		nums[i][j] = solvedPuzzle[i][j];
 	}
-	for(int i = 0; i < 9; i++){
-	    for (int j = 0; j < 9; j++)
-		orig[i][j] = solvedPuzzle[i][j];
-	}
-	//blanks certain vaules
-	//WILL NEED BEN'S HELP, MAYBE A LOOP WITH HIS METHOD
-	for(int i = 0; i < 60; i++){
+	//blanks values
+	//NEED TO IMPLEMENT BEN'S BACKTRACKING TO MAKE SURE UNIQUE SOLUTION
+	for (int i = 0; i < 60; i++){
 	    rand = randgen.nextInt(9);
 	    rand2 = randgen.nextInt(9);
 	    if (solvedPuzzle[rand][rand2].equals("")) {
@@ -136,6 +132,12 @@ public class Sudoku implements ActionListener, MouseListener{
 		rand2 = randgen.nextInt(9);
 	    }
 	    solvedPuzzle[rand][rand2] = "";
+	}
+	//GUI
+	for (int i = 0; i < 9; i++){
+	    for (int j = 0; j < 9; j++){
+		orig[i][j] = solvedPuzzle[i][j];
+	    }
 	}
 	//Test Methods (terminal rn)
         System.out.println(Arrays.deepToString(solvedPuzzle).replace("[", "").replace("], ","\n"));
@@ -203,13 +205,15 @@ public class Sudoku implements ActionListener, MouseListener{
 		if (orig[k][j].equals(""))
 		    g.setColor(Color.cyan);
 		g.drawString(solvedPuzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
-	        
+	        g.setColor(Color.black);
 	    }
 	}
 	//win message
 	if (win(nums, solvedPuzzle)){
 	    g.fillRect(0,  0,  450,  450);
 	    g.setColor(Color.white);
+	    Font won = new Font("Helvetica", Font.BOLD, 20);
+	    g.setFont(won);
 	    g.drawString("You win!", 250, 220);
 	}
     }
@@ -225,9 +229,23 @@ public class Sudoku implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
-	System.out.println(xcor+","+ycor);
+	//User input from number pad
+	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
+	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
+	    numVal = (ycor + 15) / 50 + "";
+	}
+	if (xcor < 475){
+	    x = ((xcor + 50) / 50);
+	    y = ((ycor + 25) / 50);
+	    centerX = 50 * x - 25;
+	    centerY = 50 * y - 25;
+	    if (orig[y-1][x-1].equals("")){
+		solvedPuzzle[y-1][x-1] = numVal;
+	    }
+	}
     }
 
     @Override
