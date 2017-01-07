@@ -34,6 +34,8 @@ public class Sudoku implements ActionListener, MouseListener{
     Random randgen;
     //Variables to utilize randgen when shuffling
     int rand,rand2;
+    //GUI positioning
+    int centerX, centerY, x, y;
     //Strings arrays to hold values
     String [][] nums = new String[9][9];
     String [][] orig = new String[9][9];
@@ -203,6 +205,12 @@ public class Sudoku implements ActionListener, MouseListener{
 		g.drawString(solvedPuzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
 	        
 	    }
+	}
+	//win message
+	if (win(nums, solvedPuzzle)){
+	    g.fillRect(0,  0,  450,  450);
+	    g.setColor(Color.white);
+	    g.drawString("You win!", 250, 220);
 	}
     }
 
