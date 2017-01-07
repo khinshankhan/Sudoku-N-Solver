@@ -2,6 +2,8 @@
 /*
 NEED TO ADD IN USER INPUT FOR SEED
 ***work on puzzle aspect next
+add in user inputs
+add in win message
 implement ben's backtracking soon
  */
 
@@ -104,7 +106,30 @@ public class Sudoku implements ActionListener, MouseListener{
 	        switchColumns(solvedPuzzle, rand-2, 0);
 	    }
 	}
+	//Second arrays filled, to be cross-checked when checking if won
+	for(int i = 0; i < 9; i++){
+	    for (int j = 0; j < 9; j++)
+		nums[i][j] = solvedPuzzle[i][j];
+	}
+	for(int i = 0; i < 9; i++){
+	    for (int j = 0; j < 9; j++)
+		orig[i][j] = solvedPuzzle[i][j];
+	}
+	//blanks certain vaules
+	//WILL NEED BEN'S HELP, MAYBE A LOOP WITH HIS METHOD
+	for(int i = 0; i < 60; i++){
+	    rand = randgen.nextInt(9);
+	    rand2 = randgen.nextInt(9);
+	    if (solvedPuzzle[rand][rand2].equals("")) {
+		rand = randgen.nextInt(9);
+		rand2 = randgen.nextInt(9);
+	    }
+	    solvedPuzzle[rand][rand2] = "";
+	}
+	//Test Methods (terminal rn)
         System.out.println(Arrays.deepToString(solvedPuzzle).replace("[", "").replace("], ","\n"));
+	System.out.println("\n");
+        System.out.println(Arrays.deepToString(nums).replace("[", "").replace("], ","\n"));
 	JFrame jframe = new JFrame();
 	Timer timer = new Timer(20, this);
 	renderer = new Renderer();
@@ -159,6 +184,17 @@ public class Sudoku implements ActionListener, MouseListener{
 	    g.setColor(Color.white);
 	}
 	//END OF JUST SUDOKU GRID
+
+	//Draws in the puzzle
+	g.setColor(Color.black);
+	for (int k = 0; k < solvedPuzzle.length; k++) {
+	    for (int j = 0; j < solvedPuzzle[0].length; j++) {
+		if (orig[k][j].equals(""))
+		    g.setColor(Color.cyan);
+		g.drawString(solvedPuzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
+	        
+	    }
+	}
     }
 
     public static void main (String [] a) {
