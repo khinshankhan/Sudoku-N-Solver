@@ -24,7 +24,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     //for the renderer (RendererSolver.java)
     public static SudokuSolver objectname;
     //paint component
-    public RendererSolver renderer;
+    //public RendererSolver renderer;
  
     //decided on Strings for the puzzle
     //will have to be set to a bunch of empty Strings eventually...
@@ -52,8 +52,19 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     public static boolean canBeSolved(String[][] puzzle, int r, int c){
 	//static or no? Yah
 	
-	//this is the BUG
-	if(r == 8 && c == 8){ //breaks loop -- base case
+	//a separate section of code for that pesky final grid value
+	if(r == 8 && c == 8 && puzzle[r][c].equals("")){ 
+	    for(int i = 1; i < vals.length + 1; i++){
+		if(noSameRow(puzzle[r], c, vals[i - 1]) &&
+		   noSameCol(puzzle, r, c, vals[i - 1]) &&
+		   noSameBox(puzzle, r, c, vals[i - 1])){
+		    //set that puzzle grid spot to the value 
+		    puzzle[r][c] = vals[i - 1];
+		}
+	    }
+	    return (!puzzle[r][c].equals("")); //final case
+	}
+	else if(r == 8 && c == 8){ //breaks loop -- base case
 	    return true;
 	}
 
@@ -159,7 +170,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	{"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
 	{"2", "", "6", "", "7", "4", "9", "5", ""}, 
 	{"1", "7", "5", "6", "9", "3", "4", "2", ""},
-	{"9", "8", "4", "2", "1", "5", "6", "7", "3"}};// deleting a few values for a test run of canBeSolved
+	{"9", "8", "4", "2", "1", "5", "6", "7", ""}};// deleting a few values for a test run of canBeSolved
 	SudokuSolver unsolved = new SudokuSolver(unsolvedPuzzle);
        	System.out.println(unsolved);
 
