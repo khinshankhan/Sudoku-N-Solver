@@ -8,7 +8,9 @@ NOTES:
 1/7: Fixed last value bug 
      Discovered (and fixed) bug Khinshan was having in integrating the solver
      Integrated Khinshan's randomizing constructor
-
+1/8: Keep in mind, will have to analyze inputted puzzle for faults before 
+     attempting to solve, or else there will be problems with canBeSolved...
+     That will necessitate another function (isValid ? or isSolvable???)
  */ 
 
 //import stuff
