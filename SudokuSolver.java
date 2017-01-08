@@ -5,6 +5,8 @@ NOTES:
 1/6: RendererSolver.java created (beginning of GUI)
      GUI next!!!
      Fix bug with last value in grid
+1/7: Fixed last value bug 
+
  */ 
 
 //import stuff
@@ -28,7 +30,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
  
     //decided on Strings for the puzzle
     //will have to be set to a bunch of empty Strings eventually...
-    private String[][] puzzle = {
+    private String[][] solvedPuzzle = {
 	{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
 	{"8", "9", "7", "3", "6", "1", "5", "4", "2"},
 	{"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
@@ -39,11 +41,84 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	{"1", "7", "5", "6", "9", "3", "4", "2", "8"},
 	{"9", "8", "4", "2", "1", "5", "6", "7", "3"}};
 
+    Random randgen; //for constructor
+    
     //will be updated with the "build-a-puzzle" alg + graphics!!!
     public SudokuSolver(String[][] p){
-	puzzle = p; //for tests
+	solvedPuzzle = p; //for tests
     }
 
+    public SudokuSolver(int seed){
+    
+	//assign randgen
+	randgen = new Random(seed);
+	int rand, rand2; //instantiation for vars used below
+	
+	//"BUILD-A-PUZZLE" ALGORITHM FROM KHINSHAN
+	for (int i = 0; i < 5; i++){
+	    rand = randgen.nextInt(9);
+	    if (rand % 3 == 0){
+		switchRows(solvedPuzzle, rand, 0);
+	        switchRows(solvedPuzzle, rand+1, 1);
+	        switchRows(solvedPuzzle, rand+2, 2);
+	    }
+	    if (rand % 3 == 1){
+	        switchRows(solvedPuzzle, rand, 1);
+	        switchRows(solvedPuzzle, rand-1, 0);
+	        switchRows(solvedPuzzle, rand+1, 2);
+	    }
+	    if (rand % 3 == 2){
+	        switchRows(solvedPuzzle, rand, 2);
+	        switchRows(solvedPuzzle, rand-1, 1);
+	        switchRows(solvedPuzzle, rand-2, 0);
+	    }
+	    rand = randgen.nextInt(9);
+	    if (rand % 3 == 0){
+	        switchColumns(solvedPuzzle, rand, 0);
+	        switchColumns(solvedPuzzle, rand+1, 1);
+	        switchColumns(solvedPuzzle, rand+2, 2);
+	    }
+	    if (rand % 3 == 1){
+	        switchColumns(solvedPuzzle, rand, 1);
+	        switchColumns(solvedPuzzle, rand-1, 0);
+	        switchColumns(solvedPuzzle, rand+1, 2);
+	    }
+	    if (rand % 3 == 2){
+		switchColumns(solvedPuzzle, rand, 2);
+	        switchColumns(solvedPuzzle, rand-1, 1);
+	        switchColumns(solvedPuzzle, rand-2, 0);
+	    }
+	}
+
+	//blanking out the values
+	for(int i = 0; i < 35; i++){ //CRUCIAL -- set number of blank spots here
+	    rand = randgen.nextInt(9);
+	    rand2 = randgen.nextInt(9);
+	    if(solvedPuzzle[rand][rand2].equals("")){
+		rand = randgen.nextInt(9);
+		rand = randgen.nextInt(9);
+	    }
+	    solvedPuzzle[rand][rand2] = "";
+	}
+    }
+
+    //helper functions for constructor randomizer
+    //for switching two rows
+    public static void switchRows(String [][] a, int row1, int row2) {
+	String [] temp = a[row1];
+	a[row1] = a[row2]; 
+	a[row2] = temp;
+    }
+
+    //for switching two columns
+    public static void switchColumns(String [][] a, int column1, int column2) {
+	for (int i = 0; i < a.length; i++) {
+	    String temp = a[i][column1];
+	    a[i][column1] = a[i][column2];
+	    a[i][column2] = temp;
+	}
+    }
+    
     //BOOLEAN BACKTRACKING FUNCTION (ESSENTIAL FOR SOLVING PUZZLES)
 
     //for assigning values to the grid
@@ -63,6 +138,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 		}
 	    }
 	    return (!puzzle[r][c].equals("")); //final case
+	    //this should always return true... but not taking any chances
 	}
 	else if(r == 8 && c == 8){ //breaks loop -- base case
 	    return true;
@@ -71,10 +147,10 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	//skip over already-filled-in boxes!!!
 	if(!(puzzle[r][c].equals(""))){
 	    if(r == 8){//if it's the end of the row, go to the next one!
-		return canBeSolved(puzzle, 0, c + 1);
+	        return canBeSolved(puzzle, 0, c + 1);
 	    }
 	    else{//anywhere else in the grid
-		return canBeSolved(puzzle, r + 1, c);
+	        return canBeSolved(puzzle, r + 1, c);
 	    }
 	}
 	
@@ -86,14 +162,28 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 		//set that puzzle grid spot to the value 
 		puzzle[r][c] = vals[i - 1];
 
-		//recursive call 
+		//THIS WAS THE STUFF THAT WASN'T WORKING!!!
+		//The problem was that it was stopping after one go-through.
+		//Needed to add in additional boolean and erase return
+		//statements in order to loop through multiple times.
+		
+		boolean isSolved;
+		
 		if(r == 8){//end of the row...
-		    return canBeSolved(puzzle, 0, c + 1);
+		    isSolved = canBeSolved(puzzle, 0, c + 1);
 		}
 		else{//anywhere else in the grid
-		    return canBeSolved(puzzle, r + 1, c);
+		    isSolved = canBeSolved(puzzle, r + 1, c);
 		}
+
+		if(isSolved){
+		    return true;
+		}
+		else{
+		    puzzle[r][c] = ""; //reset for next iteration through
+		}		   	
 	    }
+	   
 	}
 	return false;
     }
@@ -140,19 +230,19 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	
     public String toString(){ //for testing in terminal
 	String ans = "\n";
-	for(int i = 0; i < puzzle.length; i++){
+	for(int i = 0; i < solvedPuzzle.length; i++){
 	    if(i == 3 || i == 6){
 		ans += "-----------------------\n";
 	    }
-	    for(int j = 0; j < puzzle[i].length; j++){
+	    for(int j = 0; j < solvedPuzzle[i].length; j++){
 		if(j == 3 || j == 6){
 		    ans += " | ";
 		}
-		if(puzzle[i][j].equals("")){
+		if(solvedPuzzle[i][j].equals("")){
 		    ans += "  ";
 		}
 		else{
-		    ans += puzzle[i][j] + " ";
+		    ans += solvedPuzzle[i][j] + " ";
 		}
 	    }		
 	    ans += "\n";
@@ -161,7 +251,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     }
 
     public static void main(String[] args){
-	String[][] unsolvedPuzzle = {
+	/*String[][] unsolvedPuzzle = {
 	{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
 	{"8", "9", "", "3", "6", "1", "5", "4", "2"},
 	{"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
@@ -171,12 +261,23 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	{"2", "", "6", "", "7", "4", "9", "5", ""}, 
 	{"1", "7", "5", "6", "9", "3", "4", "2", ""},
 	{"9", "8", "4", "2", "1", "5", "6", "7", ""}};// deleting a few values for a test run of canBeSolved
-	SudokuSolver unsolved = new SudokuSolver(unsolvedPuzzle);
+
+	SudokuSolver unsolved = new SudokuSolver(unsolvedPuzzle);//random
        	System.out.println(unsolved);
 
-	canBeSolved(unsolvedPuzzle, 0, 0);
+	canBeSolved(unsolved, 0, 0);
 	SudokuSolver solved = new SudokuSolver(unsolvedPuzzle);
 	System.out.println(solved); //should be solved now
+	//update: THAT WORKS!!!
+	//...no longer needed with Khinshan's constructor now incorporated
+	*/
+	
+	SudokuSolver withRandomTest = new SudokuSolver(218);//random
+       	System.out.println(withRandomTest);
+
+	canBeSolved(withRandomTest.solvedPuzzle, 0, 0);
+	
+	System.out.println(withRandomTest); //should be solved now
 	//update: THAT WORKS!!!
     }
 }
