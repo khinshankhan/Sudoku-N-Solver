@@ -6,6 +6,8 @@ NOTES:
      GUI next!!!
      Fix bug with last value in grid
 1/7: Fixed last value bug 
+     Discovered (and fixed) bug Khinshan was having in integrating the solver
+     Integrated Khinshan's randomizing constructor
 
  */ 
 
