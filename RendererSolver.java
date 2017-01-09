@@ -11,6 +11,6 @@ public class RendererSolver extends JPanel{
     //will be used for the GUI aspect of SudokuSolver
     protected void paintComponent(Graphics g){
 	super.paintComponent(g);
-	SudokuSolver.objectname.repaint(g);
+	SolverGUI.objectname.repaint(g);
     }
 }
