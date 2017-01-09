@@ -35,11 +35,7 @@ public class SolverGUI implements ActionListener, MouseListener{
     
     //Solved puzzle that will be shuffled 
     String [][] solvedPuzzle =  new String[9][9];
-    for (int i = 0; i < 9; i++){
-	for (int j = 0; j < 9; j++){
-	    solvedPuzzle[i][j] = "";
-	}
-    }
+  
     //win method, boolean to check if two 2d arrays are equal
     public static boolean win(String [][] a, String[][] b) {
 	boolean winner = true;
@@ -68,6 +64,13 @@ public class SolverGUI implements ActionListener, MouseListener{
 
     //constructor
     public SolverGUI(int seed){
+	//blank the vals of the grid
+	for (int i = 0; i < 9; i++){
+	    for (int j = 0; j < 9; j++){
+		solvedPuzzle[i][j] = "";
+	    }
+	}
+
 	//assign randgen
 	randgen = new Random(seed);
 	//meticulously  shuffling of solved puzzle using the seed to maintain Sudoku viability
