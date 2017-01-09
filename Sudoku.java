@@ -121,7 +121,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
 	//blanks values
 	//NEED TO IMPLEMENT BEN'S BACKTRACKING TO MAKE SURE UNIQUE SOLUTION
-	for (int i = 0; i < 1; i++){
+	for (int i = 0; i < 30; i++){
 	    rand = randgen.nextInt(9);
 	    rand2 = randgen.nextInt(9);
 	    if (solvedPuzzle[rand][rand2].equals("")) {
@@ -137,7 +137,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	    }
 	}
 	//Test Methods (terminal rn)
-        System.out.println(Arrays.deepToString(solvedPuzzle).replace("[", "").replace("], ","\n"));
+        System.out.println(Arrays.deepToString(orig).replace("[", "").replace("], ","\n"));
 	System.out.println("\n");
         System.out.println(Arrays.deepToString(nums).replace("[", "").replace("], ","\n"));
 	JFrame jframe = new JFrame();
