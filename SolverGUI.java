@@ -47,7 +47,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	}
 
 	//Test Methods (terminal rn)
-       	JFrame jframe = new JFrame();
+       	JFrame jframe = new JFrame("Sudoku Solver");
 	Timer timer = new Timer(20, this);
 	jf=jframe;
 	renderer = new RendererSolver();
@@ -161,7 +161,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
-System.out.println(xcor+","+ycor);
+	/////////////System.out.println(xcor+","+ycor);
 	//User input from number pad
 	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
 	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
