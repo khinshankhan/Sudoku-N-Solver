@@ -25,6 +25,8 @@ public class Sudoku implements ActionListener, MouseListener{
     public static Sudoku objectname;
     //paint component
     public Renderer renderer;
+    //JFrame to dispose
+    JFrame frame;
     //seed to help recreate if the user chooses, or else will be random
     static int seed;
     //controls algorithm of changing the puzzle
@@ -142,6 +144,7 @@ public class Sudoku implements ActionListener, MouseListener{
         System.out.println(Arrays.deepToString(nums).replace("[", "").replace("], ","\n"));
 	JFrame jframe = new JFrame();
 	Timer timer = new Timer(20, this);
+	frame=jframe;
 	renderer = new Renderer();
 	jframe.add(renderer);
 	jframe.addMouseListener(this);
@@ -165,6 +168,10 @@ public class Sudoku implements ActionListener, MouseListener{
 	g.setFont(mundane);
 	g.drawString("SEED", 550, 30);
 	g.drawString(""+seed, 557, 50);
+	g.drawString("CHANGE", 540, 80);
+	g.drawString("SEED", 550, 100);
+	g.drawString("MAIN", 550, 400);
+	g.drawString("MENU", 547, 420);
 	//THIS IS THE SUDOKU GRID
 	g.setColor(Color.white);
       	g.fillRect(0,  0,  450,  450);
@@ -234,6 +241,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
+	System.out.println(xcor+","+ycor);
 	//User input from number pad
 	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
 	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
@@ -248,7 +256,19 @@ public class Sudoku implements ActionListener, MouseListener{
 		solvedPuzzle[y-1][x-1] = numVal;
 	    }
 	}
+	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
+	    frame.dispose();
+	    String[] myString = {"a"};
+	    Menu.main(myString); 
+	}
+	if(xcor >=535 && xcor<= 630 && ycor >=85 && ycor<= 125){
+	    frame.dispose();
+	    String[] myString = {""+seed};
+	    ChooseSeed.main(myString); 
+	}
     }
+ 
+
 
     @Override
     public void mousePressed(MouseEvent e) {
