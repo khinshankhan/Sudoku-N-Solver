@@ -68,7 +68,7 @@ public class Menu implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	System.out.println(xcor+","+ycor);
+	//System.out.println(xcor+","+ycor);
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
 	    starter =true;
 	}
@@ -82,11 +82,11 @@ public class Menu implements ActionListener, MouseListener{
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
 	    x.dispose();
 	    String[] myString = {"a"};
-	    SudokuSolver.main(myString);
+	    SolverGUI.main(myString);
 	}
 	//exit
-	if(xcor >=645 && xcor<= 765 && ycor >=480 && ycor<= 530){
-	    System.exit(0);
+	if(xcor >=375 && xcor<= 475 && ycor >=490 && ycor<= 525){
+	    System.exit(0); 
 	}
     }
 
