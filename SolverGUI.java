@@ -107,7 +107,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	for (int k = 0; k < puzzle.length; k++) {
 	    for (int j = 0; j < puzzle[0].length; j++) {
 		if (orig[k][j].equals(""))
-		    g.setColor(Color.cyan);
+		    g.setColor(Color.blue);
 		g.drawString(puzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
 	        g.setColor(Color.black);
 	    }
@@ -132,7 +132,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 		for (int k = 0; k < puzzle.length; k++) {
 		    for (int j = 0; j < puzzle[0].length; j++) {
 			if (orig[k][j].equals(""))
-			    g.setColor(Color.cyan);
+			    g.setColor(Color.blue);
 			g.drawString(puzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
 			g.setColor(Color.black);
 		    }
