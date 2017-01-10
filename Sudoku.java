@@ -139,10 +139,10 @@ public class Sudoku implements ActionListener, MouseListener{
 	    }
 	}
 	//Test Methods (terminal rn)
-        System.out.println(Arrays.deepToString(orig).replace("[", "").replace("], ","\n"));
-	System.out.println("\n");
-        System.out.println(Arrays.deepToString(nums).replace("[", "").replace("], ","\n"));
-	JFrame jframe = new JFrame();
+        //////System.out.println(Arrays.deepToString(orig).replace("[", "").replace("], ","\n"));
+	////////System.out.println("\n");
+        ////////System.out.println(Arrays.deepToString(nums).replace("[", "").replace("], ","\n"));
+	JFrame jframe = new JFrame("Sudoku Puzzle");
 	Timer timer = new Timer(20, this);
 	frame=jframe;
 	renderer = new Renderer();
@@ -241,7 +241,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
-	System.out.println(xcor+","+ycor);
+	///////////System.out.println(xcor+","+ycor);
 	//User input from number pad
 	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
 	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
