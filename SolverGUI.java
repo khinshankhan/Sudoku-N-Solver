@@ -13,131 +13,44 @@ import javax.swing.Timer;
 import java.util.Random;
 import java.util.Arrays; 
 
-//class name+ implementations, note i like to use graphic
+//class name+ implementations
 public class SolverGUI implements ActionListener, MouseListener{
     //helps with initialization+ renderer
     public static SolverGUI objectname;
     //paint component
-    public Renderer renderer;
-    //seed to help recreate if the user chooses, or else will be random
-    static int seed;
-    //controls algorithm of changing the puzzle
-    Random randgen;
-    //Variables to utilize randgen when shuffling
-    int rand,rand2;
+    public RendererSolver renderer;
+    //JFrame for closing
+    JFrame jf;
     //GUI positioning
     int centerX, centerY, x, y;
-    //Strings arrays to hold values
-    String [][] nums = new String[9][9];
-    String [][] orig = new String[9][9];
-    String [] temp;
-    String numVal = "";
+    //boolean to solve
+    boolean solveNow=false;
     
-    //Solved puzzle that will be shuffled 
-    String [][] solvedPuzzle =  new String[9][9];
+    //double array for user input
+    String [][] orig = new String[9][9];
+    String [][] puzzle =  new String[9][9];
+    String numVal = "";
   
-    //win method, boolean to check if two 2d arrays are equal
-    public static boolean win(String [][] a, String[][] b) {
-	boolean winner = true;
-	for (int i = 0; i < a.length; i++) {
-	    for (int j = 0; j < a[0].length; j++)
-		if (!(a[i][j].equals(b[i][j])))
-		    winner = false;
-	}
-	return winner;
-    }
-    //for switching two rows
-    public static void switchRows(String [][] a, int row1, int row2) {
-	String [] temp = a[row1];
-	a[row1] = a[row2]; 
-	a[row2] = temp;
-    }
-
-    //for switching two columns
-    public static void switchColumns(String [][] a, int column1, int column2) {
-	for (int i = 0; i < a.length; i++) {
-	    String temp = a[i][column1];
-	    a[i][column1] = a[i][column2];
-	    a[i][column2] = temp;
-	}
-    }
-
     //constructor
-    public SolverGUI(int seed){
-	//blank the vals of the grid
+    public SolverGUI(){
+	//blank the vals of the puzzle
 	for (int i = 0; i < 9; i++){
 	    for (int j = 0; j < 9; j++){
-		solvedPuzzle[i][j] = "";
+		puzzle[i][j] = "";
 	    }
 	}
-
-	//assign randgen
-	randgen = new Random(seed);
-	//meticulously  shuffling of solved puzzle using the seed to maintain Sudoku viability
-	for (int i = 0; i < 5; i++){
-	    rand = randgen.nextInt(9);
-	    if (rand % 3 == 0){
-		switchRows(solvedPuzzle, rand, 0);
-	        switchRows(solvedPuzzle, rand+1, 1);
-	        switchRows(solvedPuzzle, rand+2, 2);
-	    }
-	    if (rand % 3 == 1){
-	        switchRows(solvedPuzzle, rand, 1);
-	        switchRows(solvedPuzzle, rand-1, 0);
-	        switchRows(solvedPuzzle, rand+1, 2);
-	    }
-	    if (rand % 3 == 2){
-	        switchRows(solvedPuzzle, rand, 2);
-	        switchRows(solvedPuzzle, rand-1, 1);
-	        switchRows(solvedPuzzle, rand-2, 0);
-	    }
-	    rand = randgen.nextInt(9);
-	    if (rand % 3 == 0){
-	        switchColumns(solvedPuzzle, rand, 0);
-	        switchColumns(solvedPuzzle, rand+1, 1);
-	        switchColumns(solvedPuzzle, rand+2, 2);
-	    }
-	    if (rand % 3 == 1){
-	        switchColumns(solvedPuzzle, rand, 1);
-	        switchColumns(solvedPuzzle, rand-1, 0);
-	        switchColumns(solvedPuzzle, rand+1, 2);
-	    }
-	    if (rand % 3 == 2){
-		switchColumns(solvedPuzzle, rand, 2);
-	        switchColumns(solvedPuzzle, rand-1, 1);
-	        switchColumns(solvedPuzzle, rand-2, 0);
-	    }
-	}
-	//answer key to compare against
-	for (int i = 0; i < 9; i++){
-	    for (int j = 0; j < 9; j++)
-		nums[i][j] = solvedPuzzle[i][j];
-	}
-	//blanks values
-	//NEED TO IMPLEMENT BEN'S BACKTRACKING TO MAKE SURE UNIQUE SOLUTION
-	for (int i = 0; i < 30; i++){
-	    rand = randgen.nextInt(9);
-	    rand2 = randgen.nextInt(9);
-	    if (solvedPuzzle[rand][rand2].equals("")) {
-		rand = randgen.nextInt(9);
-		rand2 = randgen.nextInt(9);
-	    }
-	    solvedPuzzle[rand][rand2] = "";
-	}
-
 	//GUI
 	for (int i = 0; i < 9; i++){
 	    for (int j = 0; j < 9; j++){
-		orig[i][j] = solvedPuzzle[i][j];
+		orig[i][j] = puzzle[i][j];
 	    }
 	}
+
 	//Test Methods (terminal rn)
-        System.out.println(Arrays.deepToString(orig).replace("[", "").replace("], ","\n"));
-	System.out.println("\n");
-        System.out.println(Arrays.deepToString(nums).replace("[", "").replace("], ","\n"));
-	JFrame jframe = new JFrame();
+       	JFrame jframe = new JFrame();
 	Timer timer = new Timer(20, this);
-	renderer = new Renderer();
+	jf=jframe;
+	renderer = new RendererSolver();
 	jframe.add(renderer);
 	jframe.addMouseListener(this);
 	jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,7 +70,9 @@ public class SolverGUI implements ActionListener, MouseListener{
 	g.setColor(Color.black);
 	Font mundane=new Font ("Arial",Font.BOLD,20);
 	g.setFont(mundane);
-	g.drawString("SOLVE", 550, 30); //BUTTON that checks if solvable 
+	g.drawString("SOLVE", 550, 30); //BUTTON that checks if solvable
+	g.drawString("MAIN", 550, 400);
+	g.drawString("MENU", 547, 420);
 	//THIS IS THE SUDOKU GRID
 	g.setColor(Color.white);
       	g.fillRect(0,  0,  450,  450);
@@ -187,39 +102,58 @@ public class SolverGUI implements ActionListener, MouseListener{
 	    g.setColor(Color.white);
 	}
 	//END OF JUST SUDOKU GRID
-
-	//Draws in the puzzle
+	//User input
 	g.setColor(Color.black);
-	for (int k = 0; k < solvedPuzzle.length; k++) {
-	    for (int j = 0; j < solvedPuzzle[0].length; j++) {
+	for (int k = 0; k < puzzle.length; k++) {
+	    for (int j = 0; j < puzzle[0].length; j++) {
 		if (orig[k][j].equals(""))
 		    g.setColor(Color.cyan);
-		g.drawString(solvedPuzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
+		g.drawString(puzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
 	        g.setColor(Color.black);
 	    }
 	}
-	//win message
-	if (win(nums, solvedPuzzle)){
-	    g.fillRect(0,  0,  450,  450);
-	    g.setColor(Color.white);
-	    Font won = new Font("Helvetica", Font.BOLD, 70);
-	    g.setFont(won);
-	    g.drawString("You win!", 110, 220);
+	//PROBLEM HERE!!!!!!!!
+	if(solveNow){
+	    String [][] temp =  new String[9][9];
+	    //check if solution works
+	    if(SudokuSolver.canBeSolved(puzzle, 0, 0)){
+		for (int a = 0; a < 9; a++){
+		    for (int b = 0; b < 9; b++){
+			orig[a][b] = puzzle[a][b];
+		    }
+		}
+		//Fill in grid with solution
+		g.setColor(Color.black);
+	for (int k = 0; k < puzzle.length; k++) {
+	    for (int j = 0; j < puzzle[0].length; j++) {
+		if (orig[k][j].equals(""))
+		    g.setColor(Color.cyan);
+		g.drawString(puzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
+	        g.setColor(Color.black);
+	    }
 	}
+	    }
+	    else{
+	    //if it didnt work
+	    for (int a = 0; a < 9; a++){
+		    for (int b = 0; b < 9; b++){
+			puzzle[a][b] = temp[a][b];
+		    }
+		}
+	    for (int a = 0; a < 9; a++){
+		    for (int b = 0; b < 9; b++){
+			temp[a][b] = puzzle[a][b];
+		    }
+		}
+	    solveNow=false;
+	    }
+	}
+		
     }
+  
 
     public static void main (String [] a) {
-	int x;
-	try {
-	    x = Integer.parseInt(a[0]);
-	    x %= 1000;
-	}catch (Exception e){
-	    x = (int) (Math.random() * 1000);
-	}
-	seed = x;
-	objectname = new SolverGUI(seed);
-
-	//NEED TO ADD IN USER INPUT FOR SEED
+	objectname = new SolverGUI();
     }
 
     @Override
@@ -227,6 +161,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
+System.out.println(xcor+","+ycor);
 	//User input from number pad
 	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
 	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
@@ -238,8 +173,16 @@ public class SolverGUI implements ActionListener, MouseListener{
 	    centerX = 50 * x - 25;
 	    centerY = 50 * y - 25;
 	    if (orig[y-1][x-1].equals("")){
-		solvedPuzzle[y-1][x-1] = numVal;
+		puzzle[y-1][x-1] = numVal;
 	    }
+	}
+	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
+	    jf.dispose();
+	    String[] myString = {"a"};
+	    Menu.main(myString); 
+	}
+	if(xcor >=545 && xcor<= 620 && ycor >=35 && ycor<= 55){
+	    solveNow=true;
 	}
     }
 
@@ -263,4 +206,3 @@ public class SolverGUI implements ActionListener, MouseListener{
 
     }
 }
-    
