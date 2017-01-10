@@ -115,6 +115,11 @@ public class SolverGUI implements ActionListener, MouseListener{
 	//PROBLEM HERE!!!!!!!!
 	if(solveNow){
 	    String [][] temp =  new String[9][9];
+	    for (int a = 0; a < 9; a++){
+		for (int b = 0; b < 9; b++){
+		    temp[a][b] = puzzle[a][b];
+		}
+	    }
 	    //check if solution works
 	    if(SudokuSolver.canBeSolved(puzzle, 0, 0)){
 		for (int a = 0; a < 9; a++){
@@ -124,29 +129,24 @@ public class SolverGUI implements ActionListener, MouseListener{
 		}
 		//Fill in grid with solution
 		g.setColor(Color.black);
-	for (int k = 0; k < puzzle.length; k++) {
-	    for (int j = 0; j < puzzle[0].length; j++) {
-		if (orig[k][j].equals(""))
-		    g.setColor(Color.cyan);
-		g.drawString(puzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
-	        g.setColor(Color.black);
-	    }
-	}
+		for (int k = 0; k < puzzle.length; k++) {
+		    for (int j = 0; j < puzzle[0].length; j++) {
+			if (orig[k][j].equals(""))
+			    g.setColor(Color.cyan);
+			g.drawString(puzzle[k][j]+"", 50 * j + 25, 50 * k + 25);
+			g.setColor(Color.black);
+		    }
+		}
 	    }
 	    else{
-	    //if it didnt work
-	    for (int a = 0; a < 9; a++){
+		//if it didnt work (puzzle is not valid)
+		for (int a = 0; a < 9; a++){
 		    for (int b = 0; b < 9; b++){
 			puzzle[a][b] = temp[a][b];
 		    }
-		}
-	    for (int a = 0; a < 9; a++){
-		    for (int b = 0; b < 9; b++){
-			temp[a][b] = puzzle[a][b];
-		    }
-		}
-	    solveNow=false;
+		}	
 	    }
+	    solveNow = false;
 	}
 		
     }
