@@ -150,11 +150,22 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 
 	//skip over already-filled-in boxes!!!
 	if(!(puzzle[r][c].equals(""))){
-	    if(r == 8){//if it's the end of the row, go to the next one!
-	        return canBeSolved(puzzle, 0, c + 1);
+	    if(noSameRow(puzzle[r], c, puzzle[r][c]) &&
+	       noSameCol(puzzle, r, c, puzzle[r][c]) &&
+	       noSameBox(puzzle, r, c, puzzle[r][c])){
+		//that above if statement is another check on the validity of
+		//the puzzle, will make our lives easier for FINAL version if
+		//not solve the bug we're dealing with right now (infinite loop)
+		
+		if(r == 8){//if it's the end of the row, go to the next one!
+		    return canBeSolved(puzzle, 0, c + 1);
+		}
+		else{//anywhere else in the grid
+		    return canBeSolved(puzzle, r + 1, c);
+		}
 	    }
-	    else{//anywhere else in the grid
-	        return canBeSolved(puzzle, r + 1, c);
+	    else{
+		return false;
 	    }
 	}
 	
@@ -265,7 +276,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	{"2", "", "6", "", "7", "4", "9", "5", ""}, 
 	{"1", "7", "5", "6", "9", "3", "4", "2", ""},
 	{"9", "8", "4", "2", "1", "5", "6", "7", ""}};// deleting a few values for a test run of canBeSolved
-
+	
 	SudokuSolver unsolved = new SudokuSolver(unsolvedPuzzle);//random
        	System.out.println(unsolved);
 
@@ -275,7 +286,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	//update: THAT WORKS!!!
 	//...no longer needed with Khinshan's constructor now incorporated
 	*/
-	
+	/*
 	SudokuSolver withRandomTest = new SudokuSolver(218);//random
        	System.out.println(withRandomTest);
 
@@ -283,5 +294,24 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	
 	System.out.println(withRandomTest); //should be solved now
 	//update: THAT WORKS!!!
+	*/
+	String[][] brokenPuzzle = {
+	{"1", "1", "3", "5", "4", "2", "8", "9", "7"},
+	{"8", "9", "", "3", "6", "1", "5", "4", "2"},
+	{"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
+	{"4", "", "1", "7", "3", "9", "2", "8", "5"},
+	{"", "5", "8", "", "2", "6", "1", "3", "9"}, 
+	{"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
+	{"2", "", "6", "", "7", "4", "9", "5", ""}, 
+	{"1", "7", "5", "6", "9", "3", "4", "2", ""},
+	{"9", "8", "4", "2", "1", "5", "6", "7", ""}};//broken puzzle, two 1's in first box/column/row.
+
+	SudokuSolver broken = new SudokuSolver(brokenPuzzle);
+	System.out.println(broken);
+
+	canBeSolved(brokenPuzzle, 0, 0);
+	SudokuSolver stillBroken = new SudokuSolver(brokenPuzzle);
+	System.out.println(stillBroken); //discovered that it won't return false on blatantly invalid puzzles... this should be a quick fix.
+	//IT WORKS!!!
     }
 }
