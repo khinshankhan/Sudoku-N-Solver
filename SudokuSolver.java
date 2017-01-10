@@ -128,6 +128,19 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     //for assigning values to the grid
     static String[] vals = {"1","2","3","4","5","6","7","8","9"};
 
+    //DOES NOT ALTER THE 2D ARRAY, only returns boolean
+    public static boolean isSolveable(String[][] puzzle){
+	String[][] temp = new String[9][9];
+	for(int i = 0; i < 9; i++){
+	    for(int j = 0; j < 9; j++){
+		temp[i][j] = puzzle[i][j];
+	    }
+	}
+
+	return canBeSolved(temp, 0, 0);
+    }
+
+    //ALTERS THE 2D ARRAY
     public static boolean canBeSolved(String[][] puzzle, int r, int c){
 	//static or no? Yah
 	
