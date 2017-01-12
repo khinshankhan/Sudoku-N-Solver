@@ -248,7 +248,27 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 
     }
 
-    
+	//sorts string arrays
+	public static void insertionSort(String[] data){
+	    String select;
+	    for(int i = 1; i < data.length; i++){
+		select = data[i];
+		int check= i-1;
+		while(check >=0 && lessThan(select, data[check])){
+		    data[check+1]=data[check];
+		    check--;
+		}
+		data[check+1]=select;
+	    }
+	}
+	//compares string, less than-- helper for insertion
+	public static boolean lessThan(String a, String b ){
+	    if(a.compareTo( b )<0)
+		return true;
+	    return false;
+	}
+
+	
     //checks if not any double values in same row
     private static boolean noSameRow(String[] r, int c, String thisVal){
 	for(int i = 0; i < r.length; i++){
