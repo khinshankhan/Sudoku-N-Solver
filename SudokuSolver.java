@@ -274,12 +274,10 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	    return copy;
 	}
 	//makes temp 2d array
-	public static String[][] decoy(String initial[][]){
+        public static String[][] decoy(String initial[][]){
 	    String copy[][]= new String[9][9];
-	    for (int i = 0; i < 9; i++){
-		for (int j = 0; j < 9; j++)
-		    copy[i][j] = initial[i][j];
-	    }
+	    for (int i = 0; i < 9; i++)
+		copy[i]=decoy(initial[i]);
 	    return copy;
 	}
 	//checks if sorted has repeated, ignores blanks
