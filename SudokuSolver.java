@@ -297,10 +297,11 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	    String row[][]=convertToRow(a);
 	    String col [][]=convertToCol(a);
 	    String box[][]=convertToBox(a);
-	    for(int i=0, i<9, i++){
+	    for(int i=0; i<9; i++){
 		if(repeated(row[i])||repeated(col[i])||repeated(box[i]))
 		    return false;
 	    }
+	    return true;
 	}
 	//get rows of original as rows
 	public static String[][] convertToRow(String a[][]){
