@@ -143,6 +143,9 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     //ALTERS THE 2D ARRAY
     public static boolean canBeSolved(String[][] puzzle, int r, int c){
 	//static or no? Yah
+
+	//isConflictGrid goes here
+
 	
 	//a separate section of code for that pesky final grid value
 	if(r == 8 && c == 8 && puzzle[r][c].equals("")){ 
@@ -218,6 +221,34 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 
     //helper functions for recursive canBeSolved
 
+
+    //combines all three below, eliminates need for unnecessary recursive call
+    //in canBeSolved
+    //true == there's a prior conflict, grid is not solveable
+    //false == puzzle is valid (in that there are no blatant issues with given grid)  
+    private static boolean isConflictGrid(String[][] p){
+	//requires insertion sort from Khinshan
+	//need to format rows, cols, and boxes into 1D String arrays
+
+	//rows are easiest
+	for(int i = 0; i < p.length; i++){
+	    //run insertion sort (referred to as iSort from here on out)
+	    if(iSort(p[i])){
+		return true; //means there IS a conflict
+	    }
+	}
+
+	//cols are a lil bit harder
+	for(
+	
+	//boxes are the hardest
+		    
+	    
+	
+
+    }
+
+    
     //checks if not any double values in same row
     private static boolean noSameRow(String[] r, int c, String thisVal){
 	for(int i = 0; i < r.length; i++){
@@ -324,7 +355,8 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 
 	canBeSolved(brokenPuzzle, 0, 0);
 	SudokuSolver stillBroken = new SudokuSolver(brokenPuzzle);
-	System.out.println(stillBroken); //discovered that it won't return false on blatantly invalid puzzles... this should be a quick fix.
+	System.out.println(stillBroken);
+	System.out.println(isSolveable(brokenPuzzle));//discovered that it won't return false on blatantly invalid puzzles... this should be a quick fix.
 	//IT WORKS!!!
     }
 }
