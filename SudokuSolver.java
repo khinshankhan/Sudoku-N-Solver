@@ -267,6 +267,33 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 		return true;
 	    return false;
 	}
+	//makes temp 1d array
+	public static String[] decoy(String initial[]){
+	    String[] copy = new String[initial.length];
+	    System.arraycopy( initial, 0, copy, 0, initial.length );
+	    return copy;
+	}
+	//makes temp 2d array
+	public static String[][] decoy(String initial[][]){
+	    String copy[][]= new String[9][9];
+	    for (int i = 0; i < 9; i++){
+		for (int j = 0; j < 9; j++)
+		    copy[i][j] = initial[i][j];
+	    }
+	    return copy;
+	}
+	//checks if sorted has repeated, ignores blanks
+	public static boolean repeated(String b []){
+	    String [] a = decoy(b);
+	    insertionSort(a);
+	    for(int j=1; j<a.length ; j++){
+		int i;
+		i=j-1;
+		if(!(a[i].equals("") ||a[j].equals("")) && a[i].equals(a[j]))
+		    return true;
+	    }
+	    return false;
+	}
 
 	
     //checks if not any double values in same row
