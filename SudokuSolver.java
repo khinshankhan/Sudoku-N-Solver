@@ -292,6 +292,45 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	    }
 	    return false;
 	}
+	//BOOLEAN METHOD TO CHECK IF ANY BASIC ERRORS IN SUDOKU GRID
+	public static boolean valid(String a[][]){
+	    String row[][]=convertToRow(a);
+	    String col [][]=convertToCol(a);
+	    String box[][]=convertToBox(a);
+	    for(int i=0, i<9, i++){
+		if(repeated(row[i])||repeated(col[i])||repeated(box[i]))
+		    return false;
+	    }
+	}
+	//get rows of original as rows
+	public static String[][] convertToRow(String a[][]){
+	    String converted[][]=decoy(a);
+	    return converted;
+	}
+	//get columns of original as rows
+	public static String[][] convertToCol(String a[][]){
+	    String converted[][]=new String[9][9];
+	    for(int j=0; j<9; j++){
+		int i=0;
+		while(i<9){
+		    converted[i][j]=a[j][i];
+		    i++;
+			}
+	    }
+	    return converted;
+	}
+	public static String[][] convertToBox(String a[][]){
+	    String converted[][]=new String[9][9];
+	    //WORK IN PROGRESS
+	    return converted;
+	}
+
+
+
+
+
+
+
 
 	
     //checks if not any double values in same row
