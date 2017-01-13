@@ -144,9 +144,13 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     public static boolean canBeSolved(String[][] puzzle, int r, int c){
 	//static or no? Yah
 
-	//isConflictGrid goes here
-
+	//isValid goes here
+	//BEFORE ANY RECURSION:
+	if(!isValid(puzzle)){
+	    return false;
+	}
 	
+	//ONTO THE RECURSION
 	//a separate section of code for that pesky final grid value
 	if(r == 8 && c == 8 && puzzle[r][c].equals("")){ 
 	    for(int i = 1; i < vals.length + 1; i++){
@@ -165,23 +169,12 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	}
 
 	//skip over already-filled-in boxes!!!
-	if(!(puzzle[r][c].equals(""))){
-	    if(noSameRow(puzzle[r], c, puzzle[r][c]) &&
-	       noSameCol(puzzle, r, c, puzzle[r][c]) &&
-	       noSameBox(puzzle, r, c, puzzle[r][c])){
-		//that above if statement is another check on the validity of
-		//the puzzle, will make our lives easier for FINAL version if
-		//not solve the bug we're dealing with right now (infinite loop)
-		
-		if(r == 8){//if it's the end of the row, go to the next one!
-		    return canBeSolved(puzzle, 0, c + 1);
-		}
-		else{//anywhere else in the grid
-		    return canBeSolved(puzzle, r + 1, c);
-		}
+	if(!(puzzle[r][c].equals(""))){	    
+	    if(r == 8){//if it's the end of the row, go to the next one!
+		return canBeSolved(puzzle, 0, c + 1);
 	    }
-	    else{
-		return false;
+	    else{//anywhere else in the grid
+		return canBeSolved(puzzle, r + 1, c);
 	    }
 	}
 	
@@ -195,7 +188,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 
 		//THIS WAS THE STUFF THAT WASN'T WORKING!!!
 		//The problem was that it was stopping after one go-through.
-		//Needed to add in additional boolean and erase return
+		//Needed to add in additional boolean and get rid of some return
 		//statements in order to loop through multiple times.
 		
 		boolean isSolved;
@@ -222,10 +215,6 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     //helper functions for recursive canBeSolved
 
 
-    //combines all three below, eliminates need for unnecessary recursive call
-    //in canBeSolved
-    //true == there's a prior conflict, grid is not solveable
-    //false == puzzle is valid (in that there are no blatant issues with given grid)  
   
     //sorts string arrays
     public static void insertionSort(String[] data){
@@ -242,7 +231,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     }
     //compares string, less than-- helper for insertion
     public static boolean lessThan(String a, String b ){
-	if(a.compareTo( b )<0)
+	if(a.compareTo(b)<0)
 	    return true;
 	return false;
     }
@@ -271,8 +260,11 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	}
 	return false;
     }
+
+
+    
     //BOOLEAN METHOD TO CHECK IF ANY BASIC ERRORS IN SUDOKU GRID
-    public static boolean valid(String a[][]){
+    public static boolean isValid(String a[][]){
 	String row[][]=convertToRow(a);
 	String col [][]=convertToCol(a);
 	String box[][]=convertToBox(a);
