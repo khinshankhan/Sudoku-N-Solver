@@ -301,7 +301,17 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     }
     public static String[][] convertToBox(String a[][]){
 	String converted[][]=new String[9][9];
-	//WORK IN PROGRESS
+	//using boxToArray to fill in converted:
+	converted[0] = boxToArray(a, 0, 0);
+	converted[1] = boxToArray(a, 3, 0);
+	converted[2] = boxToArray(a, 6, 0);
+	converted[3] = boxToArray(a, 0, 3);
+	converted[4] = boxToArray(a, 3, 3);
+	converted[5] = boxToArray(a, 6, 3);
+	converted[6] = boxToArray(a, 0, 6);
+	converted[7] = boxToArray(a, 3, 6);
+	converted[8] = boxToArray(a, 6, 6);
+	
 	return converted;
     }
 
@@ -419,6 +429,7 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	System.out.println(withRandomTest); //should be solved now
 	//update: THAT WORKS!!!
 	*/
+	/*
 	String[][] brokenPuzzle = {
 	{"1", "1", "3", "5", "4", "2", "8", "9", "7"},
 	{"8", "9", "", "3", "6", "1", "5", "4", "2"},
@@ -438,5 +449,25 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	System.out.println(stillBroken);
 	System.out.println(isSolveable(brokenPuzzle));//discovered that it won't return false on blatantly invalid puzzles... this should be a quick fix.
 	//IT WORKS!!!
+	*/ 
+
+	//testing for boxToArray and convertToBox
+	String[][] unsolvedPuzzle = {
+	{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
+	{"8", "9", "", "3", "6", "1", "5", "4", "2"},
+	{"5", "4", "2", "9", "8", "7", "3", "1", "6"}, 
+	{"4", "", "1", "7", "3", "9", "2", "8", "5"},
+	{"", "5", "8", "", "2", "6", "1", "3", "9"}, 
+	{"3", "2", "9", "1", "5", "8", "7", "6", "4"},  
+	{"2", "", "6", "", "7", "4", "9", "5", ""}, 
+	{"1", "7", "5", "6", "9", "3", "4", "2", ""},
+	{"9", "8", "4", "2", "1", "5", "6", "7", ""}};
+	
+	SudokuSolver normal = new SudokuSolver(unsolvedPuzzle);
+	System.out.println(normal);
+
+	SudokuSolver boxed = new SudokuSolver(convertToBox(unsolvedPuzzle));
+	System.out.println(boxed);
+	//works!!! (boxes are now the rows)
     }
 }
