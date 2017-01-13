@@ -303,14 +303,30 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
 	String converted[][]=new String[9][9];
 	//WORK IN PROGRESS
 	return converted;
+    }
+
+    //converts one box to a 1D String array
+    //startR, startC must be either 0, 3, or 6
+    public static String[] boxToArray(String[][] a, int startR, int startC){
+	String[] ans = new String[9];
+	int counter = 0;
+	
+	for(int r = startR; r < startR + 3; r++){
+	    for(int c = startC; c < startC + 3; c++){
+		ans[counter] = a[r][c];
+		counter++;
+	    }
 	}
+
+	return ans;
+    }
+       
     
     
 
 
 
-
-
+    
 
 	
     //checks if not any double values in same row
