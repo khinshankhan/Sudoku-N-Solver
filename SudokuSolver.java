@@ -226,107 +226,86 @@ public class SudokuSolver{ //will implement ActionListener, MouseListener
     //in canBeSolved
     //true == there's a prior conflict, grid is not solveable
     //false == puzzle is valid (in that there are no blatant issues with given grid)  
-    private static boolean isConflictGrid(String[][] p){
-	//requires insertion sort from Khinshan
-	//need to format rows, cols, and boxes into 1D String arrays
-
-	//rows are easiest
-	for(int i = 0; i < p.length; i++){
-	    //run insertion sort (referred to as iSort from here on out)
-	    if(iSort(p[i])){
-		return true; //means there IS a conflict
+  
+    //sorts string arrays
+    public static void insertionSort(String[] data){
+	String select;
+	for(int i = 1; i < data.length; i++){
+	    select = data[i];
+	    int check= i-1;
+	    while(check >=0 && lessThan(select, data[check])){
+		data[check+1]=data[check];
+		check--;
 	    }
+	    data[check+1]=select;
 	}
-
-	//cols are a lil bit harder
-	for(
-	
-	//boxes are the hardest
-		    
-	    
-	
-
     }
-
-	//sorts string arrays
-	public static void insertionSort(String[] data){
-	    String select;
-	    for(int i = 1; i < data.length; i++){
-		select = data[i];
-		int check= i-1;
-		while(check >=0 && lessThan(select, data[check])){
-		    data[check+1]=data[check];
-		    check--;
-		}
-		data[check+1]=select;
-	    }
-	}
-	//compares string, less than-- helper for insertion
-	public static boolean lessThan(String a, String b ){
-	    if(a.compareTo( b )<0)
-		return true;
-	    return false;
-	}
-	//makes temp 1d array
-	public static String[] decoy(String initial[]){
-	    String[] copy = new String[initial.length];
-	    System.arraycopy( initial, 0, copy, 0, initial.length );
-	    return copy;
-	}
-	//makes temp 2d array
-        public static String[][] decoy(String initial[][]){
-	    String copy[][]= new String[9][9];
-	    for (int i = 0; i < 9; i++)
-		copy[i]=decoy(initial[i]);
-	    return copy;
-	}
-	//checks if sorted has repeated, ignores blanks
-	public static boolean repeated(String b []){
-	    String [] a = decoy(b);
-	    insertionSort(a);
-	    for(int j=1; j<a.length ; j++){
-		int i;
-		i=j-1;
-		if(!(a[i].equals("") ||a[j].equals("")) && a[i].equals(a[j]))
-		    return true;
-	    }
-	    return false;
-	}
-	//BOOLEAN METHOD TO CHECK IF ANY BASIC ERRORS IN SUDOKU GRID
-	public static boolean valid(String a[][]){
-	    String row[][]=convertToRow(a);
-	    String col [][]=convertToCol(a);
-	    String box[][]=convertToBox(a);
-	    for(int i=0; i<9; i++){
-		if(repeated(row[i])||repeated(col[i])||repeated(box[i]))
-		    return false;
-	    }
+    //compares string, less than-- helper for insertion
+    public static boolean lessThan(String a, String b ){
+	if(a.compareTo( b )<0)
 	    return true;
+	return false;
+    }
+    //makes temp 1d array
+    public static String[] decoy(String initial[]){
+	String[] copy = new String[initial.length];
+	System.arraycopy( initial, 0, copy, 0, initial.length );
+	return copy;
+    }
+    //makes temp 2d array
+    public static String[][] decoy(String initial[][]){
+	String copy[][]= new String[9][9];
+	for (int i = 0; i < 9; i++)
+	    copy[i]=decoy(initial[i]);
+	return copy;
+    }
+    //checks if sorted has repeated, ignores blanks
+    public static boolean repeated(String b []){
+	String [] a = decoy(b);
+	insertionSort(a);
+	for(int j=1; j<a.length ; j++){
+	    int i;
+	    i=j-1;
+	    if(!(a[i].equals("") ||a[j].equals("")) && a[i].equals(a[j]))
+		return true;
 	}
-	//get rows of original as rows
-	public static String[][] convertToRow(String a[][]){
-	    String converted[][]=decoy(a);
-	    return converted;
+	return false;
+    }
+    //BOOLEAN METHOD TO CHECK IF ANY BASIC ERRORS IN SUDOKU GRID
+    public static boolean valid(String a[][]){
+	String row[][]=convertToRow(a);
+	String col [][]=convertToCol(a);
+	String box[][]=convertToBox(a);
+	for(int i=0; i<9; i++){
+	    if(repeated(row[i])||repeated(col[i])||repeated(box[i]))
+		return false;
 	}
+	return true;
+    }
+    //get rows of original as rows
+    public static String[][] convertToRow(String a[][]){
+	String converted[][]=decoy(a);
+	return converted;
+    }
 	//get columns of original as rows
-	public static String[][] convertToCol(String a[][]){
-	    String converted[][]=new String[9][9];
-	    for(int j=0; j<9; j++){
-		int i=0;
-		while(i<9){
-		    converted[i][j]=a[j][i];
+    public static String[][] convertToCol(String a[][]){
+	String converted[][]=new String[9][9];
+	for(int j=0; j<9; j++){
+	    int i=0;
+	    while(i<9){
+		converted[i][j]=a[j][i];
 		    i++;
-			}
 	    }
-	    return converted;
 	}
-	public static String[][] convertToBox(String a[][]){
-	    String converted[][]=new String[9][9];
-	    //WORK IN PROGRESS
-	    return converted;
+	return converted;
+    }
+    public static String[][] convertToBox(String a[][]){
+	String converted[][]=new String[9][9];
+	//WORK IN PROGRESS
+	return converted;
 	}
-
-
+    
+    
 
 
 
