@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 //class name+ implementations, note i like to use graphic
 public class Sudoku implements ActionListener, MouseListener{
+    static String[] myString ={"a","","",""};
     //helps with initialization+ renderer
     public static Sudoku objectname;
     //paint component
@@ -258,12 +259,11 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
 	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
 	    frame.dispose();
-	    String[] myString = {"a"};
 	    Menu.main(myString); 
 	}
 	if(xcor >=535 && xcor<= 630 && ycor >=85 && ycor<= 125){
 	    frame.dispose();
-	    String[] myString = {""+seed};
+	    myString[0] = ""+seed;
 	    ChooseSeed.main(myString); 
 	}
     }

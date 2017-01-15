@@ -16,8 +16,9 @@ public class Menu implements ActionListener, MouseListener{
     public boolean exit =false;
     public Render renderer;
     JFrame x;
-
-    public Menu(){
+    static String[] myString ={"a","","",""};
+	
+	public Menu(){
 	//window
 	JFrame jframe = new JFrame("START MENU");
 	x=jframe;
@@ -55,13 +56,19 @@ public class Menu implements ActionListener, MouseListener{
 	if (starter) {
 	    starter= false;
 	    x.dispose();
-	    String[] myString = {"a"};
 	    Sudoku.main(myString);
 	}
     }
 
     public static void main (String args []){
 	menu=new Menu();
+	try{
+	    myString[1]=args[1];
+	}catch(Exception e){};
+	try{
+	    myString[2]=args[2];
+	    myString[3]=args[3];
+	}catch(Exception e){};
     }
     
     @Override
@@ -75,13 +82,11 @@ public class Menu implements ActionListener, MouseListener{
 	//seeded sudoku puzzle
 	if(xcor >=645 && xcor<= 765&& ycor >=240 && ycor<= 275){
 	    x.dispose();
-	    String[] myString = {"a"};
 	    ChooseSeed.main(myString);
 	}
 	//solver, need to make GUI
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
 	    x.dispose();
-	    String[] myString = {"a"};
 	    SolverGUI.main(myString);
 	}
 	//exit

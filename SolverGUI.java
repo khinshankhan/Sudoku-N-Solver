@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 //class name+ implementations
 public class SolverGUI implements ActionListener, MouseListener{
+    static String[] myString ={"a","","",""};
     //helps with initialization+ renderer
     public static SolverGUI objectname;
     //paint component
@@ -153,8 +154,15 @@ public class SolverGUI implements ActionListener, MouseListener{
     }
   
 
-    public static void main (String [] a) {
+    public static void main (String [] args) {
 	objectname = new SolverGUI();
+	try{
+	    myString[1]=args[1];
+	}catch(Exception e){};
+	try{
+	    myString[2]=args[2];
+	    myString[3]=args[3];
+	}catch(Exception e){};
     }
 
     @Override
@@ -162,7 +170,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
-System.out.println(xcor+","+ycor);
+	//System.out.println(xcor+","+ycor);
 	//User input from number pad
 	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
 	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
@@ -179,7 +187,6 @@ System.out.println(xcor+","+ycor);
 	}
 	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
 	    jf.dispose();
-	    String[] myString = {"a"};
 	    Menu.main(myString); 
 	}
 	if(xcor >=545 && xcor<= 620 && ycor >=35 && ycor<= 55){
