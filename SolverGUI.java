@@ -145,7 +145,15 @@ public class SolverGUI implements ActionListener, MouseListener{
 		    for (int b = 0; b < 9; b++){
 			puzzle[a][b] = temp[a][b];
 		    }
-		}	
+		}
+		
+		//Dialog Box!!!
+		
+		solveNow = false; //if you don't put this here, the dialog box
+		//pops up an infinite number of times
+		
+		String[] a = {}; 
+		SolverBox.main(a); //calling the dialog box class		
 	    }
 	    solveNow = false;
 	}
