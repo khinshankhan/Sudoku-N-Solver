@@ -105,6 +105,7 @@ public class Instructions implements ActionListener, MouseListener{
 	//corners: (278, 655), (276, 682), (502, 678), (501, 654)
 	String[] a = {};
 	if(xcor >= 275 && xcor <= 500 && ycor >= 655 && ycor <= 680){
+	    jf.dispose();
 	    Menu.main(a);
 	}
     }
