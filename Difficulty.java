@@ -9,21 +9,19 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 
-public class Menu implements ActionListener, MouseListener{
+public class Difficulty implements ActionListener, MouseListener{
 
-    public static Menu menu;
-    public boolean starter =false;
-    public boolean exit =false;
-    public Render renderer;
+    public static Difficulty Difficulty;
+    public Ren renderer;
     JFrame x;
     static String[] myString ={"a","","",""};
 	
-	public Menu(){
+	public Difficulty(){
 	//window
-	JFrame jframe = new JFrame("START MENU");
+	JFrame jframe = new JFrame("DIFFICULTY");
 	x=jframe;
         Timer timer = new Timer(20, this);
-	renderer = new Render();
+	renderer = new Ren();
         jframe.add(renderer);
         jframe.addMouseListener(this);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,29 +36,23 @@ public class Menu implements ActionListener, MouseListener{
     }
 
     public void repaint (Graphics g){
-	//Parts of Menu
+	//Parts of Difficulty
 	Color background = new Color (0, 0, 0);
 	g.setColor(background); 
         g.fillRect(0, 0, 800, 800);
         g.setColor(Color.WHITE);
         Font smenu=new Font ("Arial",Font.BOLD,80);
         g.setFont(smenu);
-        g.drawString("START MENU", 180, 150);
-	Font small=new Font ("Arial",Font.BOLD,20);
-        g.setFont(small);
-	g.drawString("SEED", 650, 300);
-	g.drawString("DIFFICULTY", 620, 340);
-	g.drawString("COLOR", 641, 380);
+        g.drawString("DIFFICULTY", 180, 150);
         Font mundane=new Font ("Arial",Font.BOLD,40);
-	g.setFont(mundane);
-	g.drawString("SUDOKU PUZZLE", 250, 300);
-        g.drawString("SUDOKU SOLVER", 250, 400);
-        g.drawString("EXIT", 382, 500);
-	//start Sudoku puzzle randomly
+        g.setFont(mundane);
+	g.drawString("EASY", 375, 300);
+        g.drawString("MEDIUM", 350, 400);
+        g.drawString("HARD", 375, 500);
     }
 
     public static void main (String args []){
-	menu=new Menu();
+	Difficulty=new Difficulty();
 	try{
 	    myString[1]=args[1];
 	}catch(Exception e){
@@ -75,40 +67,25 @@ public class Menu implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	//System.out.println(xcor+","+ycor);
-        if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
+	System.out.println(xcor+","+ycor);
+        if(xcor >=0 && xcor<= 0 && ycor >=0 && ycor<= 0){
+	    myString[1]="easy";
 	    x.dispose();
-	    Sudoku.main(myString);
-	}
-	//seeded sudoku puzzle
-	if(xcor >=650 && xcor<= 710 && ycor >=305 && ycor<= 325){
-	    x.dispose();
-	    ChooseSeed.main(myString);
+	    Menu.main(myString);
 	}
 	//solver, need to make GUI
-	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
+	if(xcor >=0 && xcor<= 0&& ycor >=0 && ycor<= 0){
+	    myString[1]="medium";
 	    x.dispose();
-	    SolverGUI.main(myString);
-	}
-	if(xcor >=620 && xcor<= 740 && ycor >=350 && ycor<= 365){
-	    x.dispose();
-	    Difficulty.main(myString);
-	}
-	if(xcor >=640 && xcor<= 720 && ycor >=390 && ycor<= 405){
-	    x.dispose();
-	    Settings.main(myString);
+	    Menu.main(myString);
 	}
 	//exit
-	if(xcor >=375 && xcor<= 475 && ycor >=490 && ycor<= 525){
-	    System.exit(0); 
+	if(xcor >=0 && xcor<= 0 && ycor >=0 && ycor<= 0){
+	    myString[1]="hard";
+	    x.dispose();
+	    Menu.main(myString);
 	}
     }
-    /*
-618,347
-737,366
-640,388
-719,404
-    */
 
     @Override
     public void mouseEntered(MouseEvent e) {

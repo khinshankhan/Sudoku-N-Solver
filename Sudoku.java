@@ -123,24 +123,23 @@ public class Sudoku implements ActionListener, MouseListener{
 		nums[i][j] = solvedPuzzle[i][j];
 	}
 	//blanks values
-	int max=10;
-	    switch(myString[1]){
-	    case "easy": max=10;
-		break;
-	    case "medium": max=20;
-		break;
-	    case "hard": max=30;
-		break;
-	    }
-	    for (int i = 0; i < max; i++){
+	int max=1;
+	if("easy".equals(myString[1]))
+	    max=10;
+	if("medium".equals(myString[1]))
+	    max=20;
+	if("hard".equals(myString[1]))
+	    max=30;
+	for (int i = 0; i < max; i++){
+	    rand = randgen.nextInt(9);
+	    rand2 = randgen.nextInt(9);
+	    if (solvedPuzzle[rand][rand2].equals("")) {
 		rand = randgen.nextInt(9);
 		rand2 = randgen.nextInt(9);
-		if (solvedPuzzle[rand][rand2].equals("")) {
-		    rand = randgen.nextInt(9);
-		    rand2 = randgen.nextInt(9);
-		}
-		solvedPuzzle[rand][rand2] = "";
 	    }
+	    solvedPuzzle[rand][rand2] = "";
+	}
+	System.out.println(myString[1]);
 	//GUI
 	for (int i = 0; i < 9; i++){
 	    for (int j = 0; j < 9; j++){
