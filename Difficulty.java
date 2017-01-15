@@ -67,26 +67,26 @@ public class Difficulty implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	System.out.println(xcor+","+ycor);
-        if(xcor >=0 && xcor<= 0 && ycor >=0 && ycor<= 0){
+	//System.out.println(xcor+","+ycor);
+	//easy
+        if(xcor >=370 && xcor<= 490 && ycor >=290 && ycor<=330){
 	    myString[1]="easy";
 	    x.dispose();
 	    Menu.main(myString);
 	}
-	//solver, need to make GUI
-	if(xcor >=0 && xcor<= 0&& ycor >=0 && ycor<= 0){
+	//medium
+	if(xcor >=345 && xcor<= 520 && ycor >=390 && ycor<= 430){
 	    myString[1]="medium";
 	    x.dispose();
 	    Menu.main(myString);
 	}
-	//exit
-	if(xcor >=0 && xcor<= 0 && ycor >=0 && ycor<= 0){
+	//hard
+	if(xcor >=375 && xcor<= 495 && ycor >=495 && ycor<= 530){
 	    myString[1]="hard";
 	    x.dispose();
 	    Menu.main(myString);
 	}
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {
     }
