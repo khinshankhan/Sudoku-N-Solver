@@ -64,7 +64,8 @@ public class Menu implements ActionListener, MouseListener{
 	menu=new Menu();
 	try{
 	    myString[1]=args[1];
-	}catch(Exception e){};
+	}catch(Exception e){
+	    myString[1]="medium";}
 	try{
 	    myString[2]=args[2];
 	    myString[3]=args[3];

@@ -123,16 +123,24 @@ public class Sudoku implements ActionListener, MouseListener{
 		nums[i][j] = solvedPuzzle[i][j];
 	}
 	//blanks values
-	//NEED TO IMPLEMENT BEN'S BACKTRACKING TO MAKE SURE UNIQUE SOLUTION
-	for (int i = 0; i < 30; i++){
-	    rand = randgen.nextInt(9);
-	    rand2 = randgen.nextInt(9);
-	    if (solvedPuzzle[rand][rand2].equals("")) {
+	int max=10;
+	    switch(myString[1]){
+	    case "easy": max=10;
+		break;
+	    case "medium": max=20;
+		break;
+	    case "hard": max=30;
+		break;
+	    }
+	    for (int i = 0; i < max; i++){
 		rand = randgen.nextInt(9);
 		rand2 = randgen.nextInt(9);
+		if (solvedPuzzle[rand][rand2].equals("")) {
+		    rand = randgen.nextInt(9);
+		    rand2 = randgen.nextInt(9);
+		}
+		solvedPuzzle[rand][rand2] = "";
 	    }
-	    solvedPuzzle[rand][rand2] = "";
-	}
 	//GUI
 	for (int i = 0; i < 9; i++){
 	    for (int j = 0; j < 9; j++){
@@ -232,6 +240,14 @@ public class Sudoku implements ActionListener, MouseListener{
 	    x = (int) (Math.random() * 1000);
 	}
 	seed = x;
+	try{
+	    myString[1]=a[1];
+	}catch(Exception e){
+	    myString[1]="medium";}
+	try{
+	    myString[2]=a[2];
+	    myString[3]=a[3];
+	}catch(Exception e){};
 	objectname = new Sudoku(seed);
 
 	//NEED TO ADD IN USER INPUT FOR SEED
