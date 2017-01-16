@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import java.lang.reflect.Field;
 
 public class Settings implements ActionListener, MouseListener{
     public static Settings Settings;
@@ -65,7 +66,14 @@ public class Settings implements ActionListener, MouseListener{
     }
 
     public static Color colors(String a){
-	return Color.parseColor(a);
+        Color color;
+	try{
+	    Field field = Class.forName("java.awt.Color").getField(a);
+	    color = (Color)field.get(null);
+	}catch (Exception e) {
+	    color = null; // Not defined
+	}
+	return color;
     }
     public static void main(String[] args){
 	try{
