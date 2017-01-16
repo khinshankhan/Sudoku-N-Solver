@@ -63,7 +63,10 @@ public class Settings implements ActionListener, MouseListener{
 	//r&c
 	g.drawString("COMPOL", 340, 650);
     }
-    
+
+    public static Color colors(String a){
+	return Color.parseColor(a);
+    }
     public static void main(String[] args){
 	try{
 	    myString[1]=args[1];
