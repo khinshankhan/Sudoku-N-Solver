@@ -16,15 +16,9 @@ public class Menu implements ActionListener, MouseListener{
     public boolean exit =false;
     public Render renderer;
     JFrame x;
-<<<<<<< HEAD
     static String[] myString ={"a","","",""};
 	
-	public Menu(){
-=======
-    static String[] myString = {"a","","",""};
-    
     public Menu(){
->>>>>>> benExtra
 	//window
 	JFrame jframe = new JFrame("Start Menu");
 	x=jframe;
@@ -63,20 +57,17 @@ public class Menu implements ActionListener, MouseListener{
         g.drawString("SUDOKU SOLVER", 250, 400);
         g.drawString("INSTRUCTIONS", 275, 500);
 	g.drawString("EXIT", 382, 600);
+
 	//start Sudoku puzzle randomly
-<<<<<<< HEAD
-=======
 	if (starter) {
 	    starter= false;
 	    x.dispose();
 	    Sudoku.main(myString);
 	}
->>>>>>> benExtra
     }
 
     public static void main (String args []){
 	menu=new Menu();
-<<<<<<< HEAD
 	try{
 	    myString[1]=args[1];
 	}catch(Exception e){
@@ -85,7 +76,6 @@ public class Menu implements ActionListener, MouseListener{
 	    myString[2]=args[2];
 	    myString[3]=args[3];
 	}catch(Exception e){};
-=======
 
 	try{
 	    myString[1] = args[1];
@@ -95,25 +85,21 @@ public class Menu implements ActionListener, MouseListener{
 	try{
 	    myString[2] = args[2];
 	    myString[2] = args[2];
-	}catch(Exception e){};
-	
-	
->>>>>>> benExtra
+	}catch(Exception e){};	
     }
     
     @Override
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	System.out.println(xcor+","+ycor);
-	
+	//System.out.println(xcor+","+ycor);
+
+	//unseeded sudoku puzzle
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
-<<<<<<< HEAD
 	    x.dispose();
 	    Sudoku.main(myString);
-=======
+
 	    starter = true;
->>>>>>> benExtra
 	}
 	//seeded sudoku puzzle
 	if(xcor >=650 && xcor<= 710 && ycor >=305 && ycor<= 325){
@@ -122,39 +108,35 @@ public class Menu implements ActionListener, MouseListener{
 	}
 	//solver
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
-<<<<<<< HEAD
 	    x.dispose();
 	    SolverGUI.main(myString);
 	}
+	//Difficulty window
 	if(xcor >=620 && xcor<= 740 && ycor >=350 && ycor<= 365){
 	    x.dispose();
 	    Difficulty.main(myString);
-	}
+	}//Settings window
 	if(xcor >=640 && xcor<= 720 && ycor >=390 && ycor<= 405){
 	    x.dispose();
 	    Settings.main(myString);
 	}
-=======
-	    x.dispose();	   
-	    SolverGUI.main(myString);
-	}
+	    
 	//instructions
 	if(xcor >= 275 && xcor<= 570 && ycor >= 490 && ycor<= 517){
 	    x.dispose();
 	    Instructions.main(myString);
 	}
-
->>>>>>> benExtra
+	
 	//exit
 	if(xcor >= 375 && xcor <= 475 && ycor >= 590 && ycor <= 625){
 	    System.exit(0);
 	}
     }
     /*
-618,347
-737,366
-640,388
-719,404
+      618,347
+      737,366
+      640,388
+      719,404
     */
 
     @Override
