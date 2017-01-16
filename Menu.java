@@ -16,9 +16,15 @@ public class Menu implements ActionListener, MouseListener{
     public boolean exit =false;
     public Render renderer;
     JFrame x;
+<<<<<<< HEAD
     static String[] myString ={"a","","",""};
 	
 	public Menu(){
+=======
+    static String[] myString = {"a","","",""};
+    
+    public Menu(){
+>>>>>>> benExtra
 	//window
 	JFrame jframe = new JFrame("Start Menu");
 	x=jframe;
@@ -55,12 +61,22 @@ public class Menu implements ActionListener, MouseListener{
 	g.setFont(mundane);
 	g.drawString("SUDOKU PUZZLE", 250, 300);
         g.drawString("SUDOKU SOLVER", 250, 400);
-        g.drawString("EXIT", 382, 500);
+        g.drawString("INSTRUCTIONS", 275, 500);
+	g.drawString("EXIT", 382, 600);
 	//start Sudoku puzzle randomly
+<<<<<<< HEAD
+=======
+	if (starter) {
+	    starter= false;
+	    x.dispose();
+	    Sudoku.main(myString);
+	}
+>>>>>>> benExtra
     }
 
     public static void main (String args []){
 	menu=new Menu();
+<<<<<<< HEAD
 	try{
 	    myString[1]=args[1];
 	}catch(Exception e){
@@ -69,24 +85,44 @@ public class Menu implements ActionListener, MouseListener{
 	    myString[2]=args[2];
 	    myString[3]=args[3];
 	}catch(Exception e){};
+=======
+
+	try{
+	    myString[1] = args[1];
+	}catch(Exception e){
+	    myString[1] = "medium";
+	}
+	try{
+	    myString[2] = args[2];
+	    myString[2] = args[2];
+	}catch(Exception e){};
+	
+	
+>>>>>>> benExtra
     }
     
     @Override
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	//System.out.println(xcor+","+ycor);
+	System.out.println(xcor+","+ycor);
+	
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
+<<<<<<< HEAD
 	    x.dispose();
 	    Sudoku.main(myString);
+=======
+	    starter = true;
+>>>>>>> benExtra
 	}
 	//seeded sudoku puzzle
 	if(xcor >=650 && xcor<= 710 && ycor >=305 && ycor<= 325){
 	    x.dispose();
 	    ChooseSeed.main(myString);
 	}
-	//solver, need to make GUI
+	//solver
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
+<<<<<<< HEAD
 	    x.dispose();
 	    SolverGUI.main(myString);
 	}
@@ -98,9 +134,20 @@ public class Menu implements ActionListener, MouseListener{
 	    x.dispose();
 	    Settings.main(myString);
 	}
+=======
+	    x.dispose();	   
+	    SolverGUI.main(myString);
+	}
+	//instructions
+	if(xcor >= 275 && xcor<= 570 && ycor >= 490 && ycor<= 517){
+	    x.dispose();
+	    Instructions.main(myString);
+	}
+
+>>>>>>> benExtra
 	//exit
-	if(xcor >=375 && xcor<= 475 && ycor >=490 && ycor<= 525){
-	    System.exit(0); 
+	if(xcor >= 375 && xcor <= 475 && ycor >= 590 && ycor <= 625){
+	    System.exit(0);
 	}
     }
     /*
