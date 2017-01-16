@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import java.util.Arrays; 
 
 
 public class Menu implements ActionListener, MouseListener{
@@ -57,27 +58,11 @@ public class Menu implements ActionListener, MouseListener{
         g.drawString("SUDOKU SOLVER", 250, 400);
         g.drawString("INSTRUCTIONS", 275, 500);
 	g.drawString("EXIT", 382, 600);
-
-	//start Sudoku puzzle randomly
-	if (starter) {
-	    starter= false;
-	    x.dispose();
-	    Sudoku.main(myString);
-	}
+	//System.out.println(Arrays.toString(myString));
     }
 
     public static void main (String args []){
 	menu=new Menu();
-	try{
-	    myString[1]=args[1];
-	}catch(Exception e){
-	    myString[1]="medium";}
-	try{
-	    myString[2]=args[2];
-	    myString[3]=args[3];
-<< HEAD
-	}catch(Exception e){};
-
 	try{
 	    myString[1] = args[1];
 	}catch(Exception e){
@@ -85,13 +70,10 @@ public class Menu implements ActionListener, MouseListener{
 	}
 	try{
 	    myString[2] = args[2];
-	    myString[2] = args[2];
-	}catch(Exception e){};	
-=======
+	    myString[3] = args[3];	
 	}catch(Exception e){
 	    myString[2]="black";
 	    myString[3]="white";};
->>>>>>> extra
     }
     
     @Override
@@ -104,8 +86,6 @@ public class Menu implements ActionListener, MouseListener{
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
 	    x.dispose();
 	    Sudoku.main(myString);
-
-	    starter = true;
 	}
 	//seeded sudoku puzzle
 	if(xcor >=650 && xcor<= 710 && ycor >=305 && ycor<= 325){
@@ -138,12 +118,6 @@ public class Menu implements ActionListener, MouseListener{
 	    System.exit(0);
 	}
     }
-    /*
-      618,347
-      737,366
-      640,388
-      719,404
-    */
 
     @Override
     public void mouseEntered(MouseEvent e) {

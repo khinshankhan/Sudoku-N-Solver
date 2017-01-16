@@ -11,7 +11,8 @@ public class Instructions implements ActionListener, MouseListener{
     JFrame jf;
     //GUI positioning
     int centerX, centerY, x, y;
-    
+    //call
+    static String[] myString ={"a","","",""};
 
 
     public Instructions(){
@@ -91,6 +92,13 @@ public class Instructions implements ActionListener, MouseListener{
     //main method
     public static void main(String[] args){
 	objectname = new Instructions();
+	try{
+	    myString[1]=args[1];
+	}catch(Exception e){};
+	try{
+	    myString[2]=args[2];
+	    myString[3]=args[3];
+	}catch(Exception e){};
     }
 
     @Override
@@ -98,15 +106,14 @@ public class Instructions implements ActionListener, MouseListener{
 	//x and y absolute coords, easier to work with 
 	int xcor = e.getX();
 	int ycor = e.getY();
-	System.out.println("" + xcor + ", " + ycor); //for testing
+	//System.out.println("" + xcor + ", " + ycor); //for testing
 	
 	//Need button here, with action for pressing it (should call Menu.main
 	//also gonna need to approximate the coords of it
 	//corners: (278, 655), (276, 682), (502, 678), (501, 654)
-	String[] a = {};
 	if(xcor >= 275 && xcor <= 500 && ycor >= 655 && ycor <= 680){
 	    jf.dispose();
-	    Menu.main(a);
+	    Menu.main(myString);
 	}
     }
 

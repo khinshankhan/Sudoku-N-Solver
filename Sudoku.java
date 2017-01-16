@@ -181,6 +181,11 @@ public class Sudoku implements ActionListener, MouseListener{
 	g.drawString(""+seed, 557, 50);
 	g.drawString("CHANGE", 540, 80);
 	g.drawString("SEED", 550, 100);
+	g.drawString("DIFFICULTY", 525, 150);
+	int place=550;
+	if("medium".equals(myString[1]))
+	    place=538;
+	g.drawString(""+myString[1].toUpperCase(), place, 180);
 	g.drawString("MAIN", 550, 400);
 	g.drawString("MENU", 547, 420);
 	//THIS IS THE SUDOKU GRID
