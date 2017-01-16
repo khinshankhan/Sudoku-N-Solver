@@ -12,6 +12,7 @@ public class ChooseSeed implements ActionListener{
     private JLabel seed;
     private JTextField val;
     static int wherefrom;
+    static String[] myString ={"a","","",""};
 
     public ChooseSeed(){
 	JFrame jframe = new JFrame("Choose Seed");
@@ -44,32 +45,38 @@ public class ChooseSeed implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	if(e.getActionCommand().equals("1")){
 	    x.dispose();
-	    String[] myString = {val.getText()};
+	    myString[0] = val.getText();
 	    Sudoku.main(myString);
 	   
 	}
 	if(e.getActionCommand().equals("2")){
 	    x.dispose();
 	    if(wherefrom>=0){
-	    String[] myString = {""+wherefrom};
+	    myString[0]=""+wherefrom;
 	    Sudoku.main(myString);
 	    }
 	    else{
-		String[] myString = {"a"};
 		Menu.main(myString);
 	    }
 	   
 	}
     }
-    public static void main(String[] a){
+    public static void main(String[] args){
 	int x;
 	try {
-	    x = Integer.parseInt(a[0]);
+	    x = Integer.parseInt(args[0]);
 	    x %= 1000;
 	}catch (Exception e){
 	    x = -1;
 	}
 	wherefrom = x;
+	try{
+	    myString[1]=args[1];
+	}catch(Exception e){};
+	try{
+	    myString[2]=args[2];
+	    myString[3]=args[3];
+	}catch(Exception e){};
 	ChooseSeed window = new ChooseSeed();
     }
 }
