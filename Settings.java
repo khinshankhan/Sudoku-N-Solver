@@ -80,7 +80,7 @@ public class Settings implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	//System.out.println(xcor+","+ycor);
+	System.out.println(xcor+","+ycor);
 	//default
         if(xcor >=0 && xcor<= 0 && ycor >=0 && ycor<=0){
 	    myString[2]="black";
@@ -88,6 +88,28 @@ public class Settings implements ActionListener, MouseListener{
 	    x.dispose();
 	    Menu.main(myString);
 	}
+
+	/*
+328,242
+518,277
+349,294
+496,323
+331,345
+512,378
+350,392
+478,424
+309,443
+544,475
+349,494
+478,524
+280,543
+585,576
+280,593
+586,625
+334,644
+522,675
+
+*/
     }
     @Override
     public void mouseEntered(MouseEvent e) {
