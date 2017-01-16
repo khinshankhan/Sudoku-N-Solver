@@ -48,7 +48,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	}
 
 	//Test Methods (terminal rn)
-       	JFrame jframe = new JFrame();
+       	JFrame jframe = new JFrame("Sudoku Solver");
 	Timer timer = new Timer(20, this);
 	jf=jframe;
 	renderer = new RendererSolver();

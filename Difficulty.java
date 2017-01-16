@@ -15,20 +15,20 @@ public class Difficulty implements ActionListener, MouseListener{
     public Ren renderer;
     JFrame x;
     static String[] myString ={"a","","",""};
-	
-	public Difficulty(){
-	//window
-	JFrame jframe = new JFrame("DIFFICULTY");
-	x=jframe;
-        Timer timer = new Timer(20, this);
-	renderer = new Ren();
-        jframe.add(renderer);
-        jframe.addMouseListener(this);
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jframe.setSize(800, 800);
-        jframe.setVisible(true);
-        jframe.setResizable(false);
-        timer.start();
+
+    public Difficulty(){
+    //window
+    JFrame jframe = new JFrame("Difficulty");
+    x=jframe;
+    Timer timer = new Timer(20, this);
+    renderer = new Ren();
+    jframe.add(renderer);
+    jframe.addMouseListener(this);
+    jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    jframe.setSize(800, 800);
+    jframe.setVisible(true);
+    jframe.setResizable(false);
+    timer.start();
     }
 
     public void actionPerformed(ActionEvent e){

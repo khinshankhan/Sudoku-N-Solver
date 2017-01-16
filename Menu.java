@@ -20,7 +20,7 @@ public class Menu implements ActionListener, MouseListener{
 	
 	public Menu(){
 	//window
-	JFrame jframe = new JFrame("START MENU");
+	JFrame jframe = new JFrame("Start Menu");
 	x=jframe;
         Timer timer = new Timer(20, this);
 	renderer = new Render();
