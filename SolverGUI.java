@@ -15,9 +15,7 @@ import java.util.Arrays;
 
 //class name+ implementations
 public class SolverGUI implements ActionListener, MouseListener{
-    //for the mains
-    static String[] myString = {"a","","",""};
-
+    static String[] myString ={"a","","",""};
     //helps with initialization+ renderer
     public static SolverGUI objectname;
     //paint component
@@ -155,7 +153,8 @@ public class SolverGUI implements ActionListener, MouseListener{
 		solveNow = false; //if you don't put this here, the dialog box
 		//pops up an infinite number of times
 		
-		SolverBox.main(myString); //calling the dialog box class		
+		String[] a = {}; 
+		SolverBox.main(a); //calling the dialog box class		
 	    }
 	    solveNow = false;
 	}
@@ -163,18 +162,15 @@ public class SolverGUI implements ActionListener, MouseListener{
     }
   
 
-    public static void main(String [] args){
+    public static void main (String [] args) {
 	objectname = new SolverGUI();
-
 	try{
-	    myString[1] = args[1];
-	}catch(Exception e){
-	    myString[1] = "medium";
-	}
+	    myString[1]=args[1];
+	}catch(Exception e){};
 	try{
-	    myString[2] = args[2];
-	    myString[3] = args[3];
-	}catch(Exception e){};	
+	    myString[2]=args[2];
+	    myString[3]=args[3];
+	}catch(Exception e){};
     }
 
     @Override
@@ -198,7 +194,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	    }
 	}
 	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
-	    jf.dispose();	    
+	    jf.dispose();
 	    Menu.main(myString); 
 	}
 	if(xcor >=545 && xcor<= 620 && ycor >=35 && ycor<= 55){
