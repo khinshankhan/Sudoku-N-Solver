@@ -16,7 +16,8 @@ public class Menu implements ActionListener, MouseListener{
     public boolean exit =false;
     public Render renderer;
     JFrame x;
-
+    static String[] myString = {"a","","",""};
+    
     public Menu(){
 	//window
 	JFrame jframe = new JFrame("START MENU");
@@ -56,13 +57,24 @@ public class Menu implements ActionListener, MouseListener{
 	if (starter) {
 	    starter= false;
 	    x.dispose();
-	    String[] myString = {"a"};
 	    Sudoku.main(myString);
 	}
     }
 
     public static void main (String args []){
 	menu=new Menu();
+
+	try{
+	    myString[1] = args[1];
+	}catch(Exception e){
+	    myString[1] = "medium";
+	}
+	try{
+	    myString[2] = args[2];
+	    myString[2] = args[2];
+	}catch(Exception e){};
+	
+	
     }
     
     @Override
@@ -72,24 +84,21 @@ public class Menu implements ActionListener, MouseListener{
 	System.out.println(xcor+","+ycor);
 	
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
-	    starter =true;
+	    starter = true;
 	}
 	//seeded sudoku puzzle
 	if(xcor >=645 && xcor<= 765&& ycor >=240 && ycor<= 275){
 	    x.dispose();
-	    String[] myString = {"a"};
 	    ChooseSeed.main(myString);
 	}
 	//solver
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
-	    x.dispose();
-	    String[] myString = {"a"};
+	    x.dispose();	   
 	    SolverGUI.main(myString);
 	}
 	//instructions
 	if(xcor >= 275 && xcor<= 570 && ycor >= 490 && ycor<= 517){
 	    x.dispose();
-	    String[] myString = {"a"};
 	    Instructions.main(myString);
 	}
 
