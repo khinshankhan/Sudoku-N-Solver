@@ -15,6 +15,9 @@ import java.util.Arrays;
 
 //class name+ implementations
 public class SolverGUI implements ActionListener, MouseListener{
+    //for the mains
+    static String[] myString = {"a","","",""};
+
     //helps with initialization+ renderer
     public static SolverGUI objectname;
     //paint component
@@ -47,7 +50,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	}
 
 	//Test Methods (terminal rn)
-       	JFrame jframe = new JFrame();
+       	JFrame jframe = new JFrame("Sudoku Solver");
 	Timer timer = new Timer(20, this);
 	jf=jframe;
 	renderer = new RendererSolver();
@@ -152,8 +155,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 		solveNow = false; //if you don't put this here, the dialog box
 		//pops up an infinite number of times
 		
-		String[] a = {}; 
-		SolverBox.main(a); //calling the dialog box class		
+		SolverBox.main(myString); //calling the dialog box class		
 	    }
 	    solveNow = false;
 	}
@@ -161,8 +163,18 @@ public class SolverGUI implements ActionListener, MouseListener{
     }
   
 
-    public static void main (String [] a) {
+    public static void main(String [] args){
 	objectname = new SolverGUI();
+
+	try{
+	    myString[1] = args[1];
+	}catch(Exception e){
+	    myString[1] = "medium";
+	}
+	try{
+	    myString[2] = args[2];
+	    myString[3] = args[3];
+	}catch(Exception e){};	
     }
 
     @Override
@@ -170,7 +182,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	//makes it easier to use y and x coordinates
 	int xcor = e.getX();
 	int ycor = e.getY();
-System.out.println(xcor+","+ycor);
+	//System.out.println(xcor+","+ycor);
 	//User input from number pad
 	if (xcor > 475 && xcor < 495 && ycor > 40 && ycor < 460 &&
 	    ((ycor % 100 > 40 && ycor % 100 < 60) || (ycor % 100 < 10 || ycor % 100 > 90))){
@@ -186,8 +198,7 @@ System.out.println(xcor+","+ycor);
 	    }
 	}
 	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
-	    jf.dispose();
-	    String[] myString = {"a"};
+	    jf.dispose();	    
 	    Menu.main(myString); 
 	}
 	if(xcor >=545 && xcor<= 620 && ycor >=35 && ycor<= 55){
