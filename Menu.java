@@ -50,7 +50,8 @@ public class Menu implements ActionListener, MouseListener{
 	g.drawString("SEED", 650, 250);
 	g.drawString("SUDOKU PUZZLE", 250, 300);
         g.drawString("SUDOKU SOLVER", 250, 400);
-        g.drawString("EXIT", 382, 500);
+        g.drawString("INSTRUCTIONS", 275, 500);
+	g.drawString("EXIT", 382, 600);
 	//start Sudoku puzzle randomly
 	if (starter) {
 	    starter= false;
@@ -68,7 +69,8 @@ public class Menu implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	//System.out.println(xcor+","+ycor);
+	System.out.println(xcor+","+ycor);
+	
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
 	    starter =true;
 	}
@@ -78,15 +80,22 @@ public class Menu implements ActionListener, MouseListener{
 	    String[] myString = {"a"};
 	    ChooseSeed.main(myString);
 	}
-	//solver, need to make GUI
+	//solver
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
 	    x.dispose();
 	    String[] myString = {"a"};
 	    SolverGUI.main(myString);
 	}
+	//instructions
+	if(xcor >= 275 && xcor<= 570 && ycor >= 490 && ycor<= 517){
+	    x.dispose();
+	    String[] myString = {"a"};
+	    Instructions.main(myString);
+	}
+
 	//exit
-	if(xcor >=375 && xcor<= 475 && ycor >=490 && ycor<= 525){
-	    System.exit(0); 
+	if(xcor >= 375 && xcor <= 475 && ycor >= 590 && ycor <= 625){
+	    System.exit(0);
 	}
     }
 
