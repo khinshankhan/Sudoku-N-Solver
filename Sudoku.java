@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 //class name+ implementations, note i like to use graphic
 public class Sudoku implements ActionListener, MouseListener{
+    static String[] myString ={"a","","",""};
     //helps with initialization+ renderer
     public static Sudoku objectname;
     //paint component
@@ -122,8 +123,14 @@ public class Sudoku implements ActionListener, MouseListener{
 		nums[i][j] = solvedPuzzle[i][j];
 	}
 	//blanks values
-	//NEED TO IMPLEMENT BEN'S BACKTRACKING TO MAKE SURE UNIQUE SOLUTION
-	for (int i = 0; i < 30; i++){
+	int max=1;
+	if("easy".equals(myString[1]))
+	    max=10;
+	if("medium".equals(myString[1]))
+	    max=20;
+	if("hard".equals(myString[1]))
+	    max=30;
+	for (int i = 0; i < max; i++){
 	    rand = randgen.nextInt(9);
 	    rand2 = randgen.nextInt(9);
 	    if (solvedPuzzle[rand][rand2].equals("")) {
@@ -132,6 +139,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	    }
 	    solvedPuzzle[rand][rand2] = "";
 	}
+	//System.out.println(myString[1]);
 	//GUI
 	for (int i = 0; i < 9; i++){
 	    for (int j = 0; j < 9; j++){
@@ -231,6 +239,14 @@ public class Sudoku implements ActionListener, MouseListener{
 	    x = (int) (Math.random() * 1000);
 	}
 	seed = x;
+	try{
+	    myString[1]=a[1];
+	}catch(Exception e){
+	    myString[1]="medium";}
+	try{
+	    myString[2]=a[2];
+	    myString[3]=a[3];
+	}catch(Exception e){};
 	objectname = new Sudoku(seed);
 
 	//NEED TO ADD IN USER INPUT FOR SEED
@@ -258,12 +274,11 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
 	if(xcor >=540 && xcor<= 610 && ycor >=405 && ycor<= 445){
 	    frame.dispose();
-	    String[] myString = {"a"};
 	    Menu.main(myString); 
 	}
 	if(xcor >=535 && xcor<= 630 && ycor >=85 && ycor<= 125){
 	    frame.dispose();
-	    String[] myString = {""+seed};
+	    myString[0] = ""+seed;
 	    ChooseSeed.main(myString); 
 	}
     }

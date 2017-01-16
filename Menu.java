@@ -16,10 +16,11 @@ public class Menu implements ActionListener, MouseListener{
     public boolean exit =false;
     public Render renderer;
     JFrame x;
-
-    public Menu(){
+    static String[] myString ={"a","","",""};
+	
+	public Menu(){
 	//window
-	JFrame jframe = new JFrame("START MENU");
+	JFrame jframe = new JFrame("Start Menu");
 	x=jframe;
         Timer timer = new Timer(20, this);
 	renderer = new Render();
@@ -45,23 +46,29 @@ public class Menu implements ActionListener, MouseListener{
         Font smenu=new Font ("Arial",Font.BOLD,80);
         g.setFont(smenu);
         g.drawString("START MENU", 180, 150);
+	Font small=new Font ("Arial",Font.BOLD,20);
+        g.setFont(small);
+	g.drawString("SEED", 650, 300);
+	g.drawString("DIFFICULTY", 620, 340);
+	g.drawString("COLOR", 641, 380);
         Font mundane=new Font ("Arial",Font.BOLD,40);
-        g.setFont(mundane);
-	g.drawString("SEED", 650, 250);
+	g.setFont(mundane);
 	g.drawString("SUDOKU PUZZLE", 250, 300);
         g.drawString("SUDOKU SOLVER", 250, 400);
         g.drawString("EXIT", 382, 500);
 	//start Sudoku puzzle randomly
-	if (starter) {
-	    starter= false;
-	    x.dispose();
-	    String[] myString = {"a"};
-	    Sudoku.main(myString);
-	}
     }
 
     public static void main (String args []){
 	menu=new Menu();
+	try{
+	    myString[1]=args[1];
+	}catch(Exception e){
+	    myString[1]="medium";}
+	try{
+	    myString[2]=args[2];
+	    myString[3]=args[3];
+	}catch(Exception e){};
     }
     
     @Override
@@ -70,25 +77,38 @@ public class Menu implements ActionListener, MouseListener{
         int ycor=e.getY();
 	//System.out.println(xcor+","+ycor);
         if(xcor >=245 && xcor<= 595 && ycor >=290 && ycor<= 330){
-	    starter =true;
+	    x.dispose();
+	    Sudoku.main(myString);
 	}
 	//seeded sudoku puzzle
-	if(xcor >=645 && xcor<= 765&& ycor >=240 && ycor<= 275){
+	if(xcor >=650 && xcor<= 710 && ycor >=305 && ycor<= 325){
 	    x.dispose();
-	    String[] myString = {"a"};
 	    ChooseSeed.main(myString);
 	}
 	//solver, need to make GUI
 	if(xcor >=245 && xcor<= 610&& ycor >=390 && ycor<= 420){
 	    x.dispose();
-	    String[] myString = {"a"};
 	    SolverGUI.main(myString);
+	}
+	if(xcor >=620 && xcor<= 740 && ycor >=350 && ycor<= 365){
+	    x.dispose();
+	    Difficulty.main(myString);
+	}
+	if(xcor >=640 && xcor<= 720 && ycor >=390 && ycor<= 405){
+	    x.dispose();
+	    Settings.main(myString);
 	}
 	//exit
 	if(xcor >=375 && xcor<= 475 && ycor >=490 && ycor<= 525){
 	    System.exit(0); 
 	}
     }
+    /*
+618,347
+737,366
+640,388
+719,404
+    */
 
     @Override
     public void mouseEntered(MouseEvent e) {
