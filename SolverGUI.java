@@ -15,9 +15,16 @@ import java.util.Arrays;
 
 //class name+ implementations
 public class SolverGUI implements ActionListener, MouseListener{
+<< HEAD
 
     //for the mains
     static String[] myString = {"a","","",""};
+=======
+    static String[] myString ={"a","","",""};
+    //Board Colors
+    static Color c1;
+    static Color c2;
+>>>>>>> extra
     //helps with initialization+ renderer
     public static SolverGUI objectname;
     //paint component
@@ -77,10 +84,10 @@ public class SolverGUI implements ActionListener, MouseListener{
 	g.drawString("MAIN", 550, 400);
 	g.drawString("MENU", 547, 420);
 	//THIS IS THE SUDOKU GRID
-	g.setColor(Color.white);
+	g.setColor(c2);
       	g.fillRect(0,  0,  450,  450);
 	int i = 50;
-	g.setColor(Color.black);
+	g.setColor(c1);
 	g.fillRect(450,  0,  70, 450);
 	while (i < 450){
 	    g.fillRect(i, 0, 1, 450);
@@ -93,7 +100,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	}
 	i = 15;
 	int num =  1;
-	g.setColor(Color.white);
+	g.setColor(c2);
 	while (i < 450){
 	    g.fillRect(475, i, 20, 20);
 	    g.setColor(Color.black);
@@ -102,7 +109,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 	    g.drawString(num + "", 481, i+15);
 	    i+=50;
 	    num++;
-	    g.setColor(Color.white);
+	    g.setColor(c2);
 	}
 	//END OF JUST SUDOKU GRID
 	//User input
@@ -162,6 +169,7 @@ public class SolverGUI implements ActionListener, MouseListener{
 		
     }
   
+<< HEAD
     public static void main(String [] args){
 	objectname = new SolverGUI();
 
@@ -174,6 +182,25 @@ public class SolverGUI implements ActionListener, MouseListener{
 	    myString[2] = args[2];
 	    myString[3] = args[3];
 	}catch(Exception e){};	
+=======
+
+    public static void main(String [] a){
+	objectname = new SolverGUI();
+
+        try{
+	    myString[1]=a[1];
+	}catch(Exception e){
+	    myString[1]="medium";}
+	try{
+	    myString[2]=a[2];
+	    myString[3]=a[3];
+	}catch(Exception e){
+	    myString[2]="cyan";
+	    myString[3]="white";}
+	c1=Settings.colors(myString[2]);
+	c2=Settings.colors(myString[3]);
+	
+>>>>>>> extra
     }
 
     @Override

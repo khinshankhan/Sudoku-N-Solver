@@ -41,6 +41,9 @@ public class Sudoku implements ActionListener, MouseListener{
     String [][] orig = new String[9][9];
     String [] temp;
     String numVal = "";
+    //Board Colors
+    static Color c1;
+    static Color c2;
     
     //Solved puzzzle that will be shuffled (idk why the commit got messed up)
     String [][] solvedPuzzle = {{"6", "1", "3", "5", "4", "2", "8", "9", "7"},
@@ -181,10 +184,10 @@ public class Sudoku implements ActionListener, MouseListener{
 	g.drawString("MAIN", 550, 400);
 	g.drawString("MENU", 547, 420);
 	//THIS IS THE SUDOKU GRID
-	g.setColor(Color.white);
+	g.setColor(c2);
       	g.fillRect(0,  0,  450,  450);
 	int i = 50;
-	g.setColor(Color.black);
+	g.setColor(c1);
 	g.fillRect(450,  0,  70, 450);
 	while (i < 450){
 	    g.fillRect(i, 0, 1, 450);
@@ -197,7 +200,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	}
 	i = 15;
 	int num =  1;
-	g.setColor(Color.white);
+	g.setColor(c2);
 	while (i < 450){
 	    g.fillRect(475, i, 20, 20);
 	    g.setColor(Color.black);
@@ -206,7 +209,7 @@ public class Sudoku implements ActionListener, MouseListener{
 	    g.drawString(num + "", 481, i+15);
 	    i+=50;
 	    num++;
-	    g.setColor(Color.white);
+	    g.setColor(c2);
 	}
 	//END OF JUST SUDOKU GRID
 
@@ -246,10 +249,12 @@ public class Sudoku implements ActionListener, MouseListener{
 	try{
 	    myString[2]=a[2];
 	    myString[3]=a[3];
-	}catch(Exception e){};
+	}catch(Exception e){
+	    myString[2]="cyan";
+	    myString[3]="white";}
+	c1=Settings.colors(myString[2]);
+	c2=Settings.colors(myString[3]);
 	objectname = new Sudoku(seed);
-
-	//NEED TO ADD IN USER INPUT FOR SEED
     }
 
     @Override
