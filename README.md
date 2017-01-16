@@ -21,7 +21,7 @@ IMPORTANT NOTES:
 WORKING FEATURES / THINGS FOR MR. K TO TEST:
   1. The puzzle generator will give the user a random puzzle or one of a specific seed -- press "CHOOSE SEED" to the right of the "SUDOKU SOLVER" button on the main menu to enter a seed. 
   2. Once the puzzle is generated, the user can enter numbers into the grid using the number pad to the right of the puzzle. (NOTE: click on a number on the number pad, THEN on the grid square you want to place it into. NO dragging-and-dropping). When the puzzle is correctly filled in, a victory message will display.
-  3. The user can tweak the difficulty of the generated puzzle by clicking on "DIFFICULTY" on the main menu, and selecting either "EASY," "MEDIUM," or "HARD." The difficulty affects the number of grid squares already filled in on a generated puzzle.
+  3. The user can tweak the difficulty of the generated puzzle by clicking on "DIFFICULTY" on the main menu, and selecting either "EASY," "MEDIUM," or "HARD." The difficulty affects the number of grid squares already filled in on a generated puzzle. The default difficulty is medium.
   4. The Sudoku solver gives the user a blank Sudoku grid where the user can fill in the grid with a Sudoku puzzle the program will solve.  When the user presses "SOLVE" after inputting a puzzle, the program will either fill in the rest of the puzzle with the correct answers, or display a message if the given puzzle is not solvable. 
   5. The "INSTRUCTIONS" button on the main menu displays information about the project (similar to this list of features). 
   6. The "COLORS" button on the main menu gives the user the option to choose a fun, lightheartedly-named color theme for the Sudoku grid if the original black-and-white is a little grating on the eyes :) .
