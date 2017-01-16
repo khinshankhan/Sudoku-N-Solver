@@ -73,20 +73,21 @@ public class Instructions implements ActionListener, MouseListener{
 	g.drawString("--SUDOKU PUZZLE:", 100, 345);
 	g.drawString("----Either generate a random puzzle (by clicking directly on SUDOKU", 100, 375);
 	g.drawString("PUZZLE), or click on CHOOSE SEED to input a specific integer seed", 100, 395);
-	g.drawString("----When the puzzle is completed correctly, a victory message will display", 100, 425);
+	g.drawString("----Choose a difficulty by clicking on DIFFICULTY on the main menu", 100, 425);
+	g.drawString("----When the puzzle is completed correctly, a victory message will display", 100, 455);
 
 	//SUDOKU SOLVER
-	g.drawString("--SUDOKU SOLVER:", 100, 475);
-	g.drawString("----Design your own Sudoku puzzle for the program to solve", 100, 505);
-	g.drawString("----A valid Sudoku puzzle is one that has no repeated numbers in each", 100, 535);
-	g.drawString("row, column, or box (3x3 grid subset of the larger 9x9 Sudoku grid)", 100, 555);
-	g.drawString("----Press SOLVE to see the program's solution. If your inputted puzzle", 100, 585);
-	g.drawString("is invalid, the program will display an error message", 100, 605);
+	g.drawString("--SUDOKU SOLVER:", 100, 505);
+	g.drawString("----Design your own Sudoku puzzle for the program to solve", 100, 535);
+	g.drawString("----A valid Sudoku puzzle is one that has no repeated numbers in each", 100, 565);
+	g.drawString("row, column, or box (3x3 grid subset of the larger 9x9 Sudoku grid)", 100, 585);
+	g.drawString("----Press SOLVE to see the program's solution. If your inputted puzzle", 100, 615);
+	g.drawString("is invalid, the program will display an error message", 100, 635);
 	//do we want to say something about uniqueness here?
        	
 	//back-to-the-main-menu button
 	g.setFont(menuFont);
-	g.drawString("MAIN MENU", 275, 665);
+	g.drawString("MAIN MENU", 275, 680);
     }
 
     //main method
@@ -110,8 +111,7 @@ public class Instructions implements ActionListener, MouseListener{
 	
 	//Need button here, with action for pressing it (should call Menu.main
 	//also gonna need to approximate the coords of it
-	//corners: (278, 655), (276, 682), (502, 678), (501, 654)
-	if(xcor >= 275 && xcor <= 500 && ycor >= 655 && ycor <= 680){
+	if(xcor >= 275 && xcor <= 500 && ycor >= 670 && ycor <= 695){
 	    jf.dispose();
 	    Menu.main(myString);
 	}
