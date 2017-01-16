@@ -53,16 +53,16 @@ public class Settings implements ActionListener, MouseListener{
         g.drawString("AQUATIC", 330, 350);
 	//bl&o
 	g.drawString("NICKS", 350, 400);
-	//o&p
+	//y&p
 	g.drawString("LEMONADE", 310, 450);
-	//pu&y
-	g.drawString("THINK", 350, 500);
-	//r&p
-	g.drawString("HUBBA BUBBA", 280, 550);
-	//r&p
-	g.drawString("PANIC TO FLEE", 280, 600);
+	//c&y
+	g.drawString("RELAX", 350, 500);
+	//r&y
+	g.drawString("FLASH", 350, 550);
+	//p&gr
+	g.drawString("PINKU TO GURE", 270, 600);
 	//r&c
-	g.drawString("COMPOL", 340, 650);
+	g.drawString("MARINE", 335, 650);
     }
 
     public static Color colors(String a){
@@ -91,32 +91,71 @@ public class Settings implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e){
 	int xcor=e.getX();
         int ycor=e.getY();
-	System.out.println(xcor+","+ycor);
+	//System.out.println(xcor+","+ycor);
 	//default
-        if(xcor >=0 && xcor<= 0 && ycor >=0 && ycor<=0){
+        if(xcor >=330 && xcor<= 520 && ycor >=240 && ycor<=280){
 	    myString[2]="black";
 	    myString[3]="white";
 	    x.dispose();
 	    Menu.main(myString);
 	}
+	//roses
+	if(xcor >=350 && xcor<= 500 && ycor >=295 && ycor<=325){
+	    myString[2]="green";
+	    myString[3]="red";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	//aquatic
+	if(xcor >=330 && xcor<= 510 && ycor >=345 && ycor<=375){
+	    myString[2]="white";
+	    myString[3]="cyan";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	//nicks
+	if(xcor >=350 && xcor<=475 && ycor >=390 && ycor<=425){
+	    myString[2]="blue";
+	    myString[3]="orange";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	//lemonade
+	if(xcor >=300 && xcor<=545 && ycor >=445 && ycor<=475){
+	    myString[2]="yellow";
+	    myString[3]="pink";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	//relax
+	if(xcor >=350 && xcor<=480 && ycor >=495 && ycor<=525){
+	    myString[2]="cyan";
+	    myString[3]="white";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	//flash
+	if(xcor >=350 && xcor<=490 && ycor >=540 && ycor<=580){
+	    myString[2]="yellow";
+	    myString[3]="red";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	//p&gr
+	if(xcor >=265 && xcor<=590 && ycor >=590 && ycor<=630){
+	    myString[2]="pink";
+	    myString[3]="lightGray";
+	    x.dispose();
+	    Menu.main(myString);
+	}
+	if(xcor >=335 && xcor<=505 && ycor >=640 && ycor<=675){
+	    myString[2]="green";
+	    myString[3]="cyan";
+	    x.dispose();
+	    Menu.main(myString);
+	}
 
 	/*
-328,242
-518,277
-349,294
-496,323
-331,345
-512,378
-350,392
-478,424
-309,443
-544,475
-349,494
-478,524
-280,543
-585,576
-280,593
-586,625
 334,644
 522,675
 

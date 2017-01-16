@@ -68,7 +68,9 @@ public class Menu implements ActionListener, MouseListener{
 	try{
 	    myString[2]=args[2];
 	    myString[3]=args[3];
-	}catch(Exception e){};
+	}catch(Exception e){
+	    myString[2]="black";
+	    myString[3]="white";};
     }
     
     @Override
