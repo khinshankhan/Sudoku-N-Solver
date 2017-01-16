@@ -18,7 +18,7 @@ IMPORTANT NOTES:
   4. In the main menu, click on "INSTRUCTIONS" to see more-specific information for each game mode. 
   4. The larger the screen, the more ideal
   
-WORKING FEATURES / THINGS TO TEST:
+WORKING FEATURES / THINGS FOR MR. K TO TEST:
   1. The puzzle generator will give the user a random puzzle or one of a specific seed -- press "CHOOSE SEED" to the right of the "SUDOKU SOLVER" button on the main menu to enter a seed. 
   2. Once the puzzle is generated, the user can enter numbers into the grid using the number pad to the right of the puzzle. (NOTE: click on a number on the number pad, THEN on the grid square you want to place it into. NO dragging-and-dropping). When the puzzle is correctly filled in, a victory message will display.
   3. The user can tweak the difficulty of the generated puzzle by clicking on "DIFFICULTY" on the main menu, and selecting either "EASY," "MEDIUM," or "HARD." The difficulty affects the number of grid squares already filled in on a generated puzzle.
